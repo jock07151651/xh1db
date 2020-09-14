@@ -1,0 +1,37 @@
+<include file="Public:header" />
+<!-- 主体内容-开始 -->
+<div id="content" class="main mb10">
+  <div class="content-block clearfix">
+    <div id="content-left" class="col1" style="background:#fff;">
+		<div class="gift-search">
+			<div class="quick-search">
+				<span>礼品类型：</span>
+				<volist name="cate" id="c_data">
+				<a href="/shop/cate_id/{$c_data.id}" title="{$c_data.name}">{$c_data.name}</a>
+				</volist>
+			</div>
+		</div>
+
+		<ul class="gift-list">
+		    <volist name="gift" id="p_data">
+			<li>
+				<a href="/shop/detail_{$p_data.id}" title="{$p_data.title}" target="_blank"><img src="{$p_data.image}" alt="{$p_data.title}"></a>
+				<p class="title">{$p_data.title}</p>
+				<p><span>{$p_data.price}</span>积分</p>
+				<a href="/shop/exchange_{$p_data.id}" class="btn loginClickHref">兑换</a>
+			</li>
+			</volist>
+		</ul>
+
+		<!-- 列表-结束 -->
+		<div class="pagination">
+        {$page}
+        </div>
+	</div>
+	<div class="col2">
+		<include file="right" />
+	</div>
+  </div>
+</div>
+<!-- 主体内容-结束 -->
+<include file="Public:footer" />

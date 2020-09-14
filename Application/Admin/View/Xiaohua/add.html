@@ -1,0 +1,63 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox-title">
+                <h5>发布笑话</h5>
+            </div>
+            <div class="ibox-content">
+                <a href="javascript:void(0)" link-url="{:U('xiaohua/unaudit')}"><button class="btn btn-primary btn-sm" type="button"><i class="fa fa-plus-circle"></i> 笑话管理</button></a>                
+                <form class="form-horizontal" submit-url="{:U('xiaohua/edit')}" method="post">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">发布人:</label>
+                            <div class="col-sm-2">
+                                <img src="{$user_joke['user_info']['avatar']}" width="80"/> <br/>{$user_joke['user_info']['username']}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">标题:</label>
+                            <div class="col-sm-2">
+                                <b>{$user_joke.title}</b> <br/><br/>{$user_joke.content}
+                                <input type="text" name="title" value="" class="form-control" placeholder="请输入笑话标题">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">内容:</label>
+                            <div class="col-sm-2">
+                                <textarea name="content" class="form-control"  style=" height:150px;"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">类别：</label>
+                            <div class="col-sm-2">
+                                <label for="type1"><input type="radio" id="type1" name="type" value="1" <if condition="$user_joke['type'] eq 1">checked</if>> 文字</label>
+                                <label for="type2"><input type="radio" id="type2" name="type" value="2" <if condition="$user_joke['type'] eq 2">checked</if>> 图片</label>
+                                <label for="type3"><input type="radio" id="type3" name="type" value="3" <if condition="$user_joke['type'] eq 3">checked</if>> 动态图</label>
+                                <label for="type4"><input type="radio" id="type4" name="type" value="4" <if condition="$user_joke['type'] eq 4">checked</if>> 视频</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">笑点归类:</label>
+                            <div class="col-sm-8">
+                            <volist name="tags" id="val"><label for="tags{$val.id}"><input type="checkbox" name="tags_id[]" id="tags{$val.id}" value="{$val.id}"> {$val.name}</label></volist>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">操作：</label>
+                            <div class="col-sm-2">
+                                <label for="s1"><input type="radio" id="s1" name="status" value="2" checked=""> 通过</label>
+                                <label for="s2"><input type="radio" id="s2" name="status" value="3"> 不通过</label>
+                                <input type="text" name="reason" id="reason" size="50" style="display: none;" placeholder="理由">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-sm-offset-2">
+                        <input type="hidden" name="id" value="{$user_joke.id}" />
+                        <button class="btn btn-primary" type="submit" data-form-action="App.submit_form"><i class="fa fa-check"></i> 保 存</button>
+                    </div>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

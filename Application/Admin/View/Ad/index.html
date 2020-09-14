@@ -1,0 +1,43 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox-title">
+                <h5>广告管理</h5>
+            </div>
+            <div class="ibox-content">
+                <a href="javascript:void(0)" link-url="{:U('ad/add')}"><button class="btn btn-primary btn-sm" type="button"><i class="fa fa-plus-circle"></i> 添加广告</button></a>
+                <table class="table table-bordered m-t-md">
+                    <thead>
+                        <tr>
+                            <th class="text-center" width="100">ID</th>
+                            <th width="200">广告标识</th>
+                            <th width="250">调用代码</th>
+                            <th>广告内容</th>
+                            <th class="text-center w170">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <volist name="ad" id="val">
+                        <tr>
+                            <td class="text-center">{$val.id}</td>
+                            <td>{$val.name}</td>
+                            <td><input type="text" name="name" class="form-control" value="$adv['{$val.name}']"></td>
+                            <td><textarea name="content" class="form-control" style="height:100px;">{$val.content}</textarea></td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <a href="javascript:void(0)" link-url="{:U('ad/edit',array('id' => $val['id']))}"><button class="btn btn-white btn-sm " type="button"><em class="fa fa-edit"></em> 修改</button></a>
+                                    <a href="javascript:void(0)" data-action="App.del" data-id="{$val.id}" data-url="{:U('ad/delete')}"><button class="btn btn-white btn-sm" type="button"><em class="fa fa-trash-o"></em> 删除</button></a>
+                                </div>
+                            </td>
+                        </tr>
+                        </volist>
+                    </tbody>
+                </table>
+                <div class="pull-right pagination m-t-no">
+                    {$page|str_replace='href','href="javascript:void(0)" link-url',###}
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>

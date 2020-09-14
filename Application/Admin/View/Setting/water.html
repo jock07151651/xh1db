@@ -1,0 +1,168 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>水印设置</h5>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal" submit-url="{:U('setting/setting')}" method="POST" name="form_Website_config">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">启用水印：</label>
+                            <div class="col-sm-1">
+                                <select class="form-control" name='setting["water_status"]' id="water_switch">
+                                    <option value="0" <if condition="$setting['water_status'] eq 0"> selected</if>>关闭</option>
+                                    <option value="1" <if condition="$setting['water_status'] eq 1"> selected</if>>启用</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group water_type" <eq name='setting["water_status"]' value="1">style="display:block"</eq>>
+                            <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                            <label class="col-sm-2 control-label">水印类型：</label>
+                            <div class="col-sm-10">
+                                <label class="radio-inline"><input type="radio" id="t1_1" value="0" name='setting["water_type"]'<if condition="$setting['water_type'] eq 0"> checked</if>>文字水印</label>
+                                <label class="radio-inline"><input type="radio" id="t1_2" value="1" name='setting["water_type"]'<if condition="$setting['water_type'] eq 1"> checked</if>>图片水印</label>
+                            </div>
+                        </div>
+                        <div class="form-group text" <if condition="$setting['water_type'] eq 0">style="display:block"</if>>
+                            <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                            <label class="col-sm-2 control-label">水印文字：</label>
+                            <div class="col-sm-2">
+                                <input type="text" name='setting["water_font"]' class="form-control" value="{$setting['water_font']|default='yicms'}">
+                            </div>
+                        </div>
+                        <div class="form-group text" <if condition="$setting['water_type'] eq 0">style="display:block"</if>>
+                            <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                            <label class="col-sm-2 control-label">文本颜色：</label>
+                            <div class="col-sm-2">
+                                <input type="text" name='setting["water_font_color"]' class="form-control" id="water-text-color" value="{$setting['water_font_color']|default='#000000'}" data-color-format="hex">
+                            </div>
+                        </div>
+                        <div class="form-group text" <if condition="$setting['water_type'] eq 0">style="display:block"</if>>
+                            <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                            <label class="col-sm-2 control-label">字体选择：</label>
+                            <div class="col-sm-2">
+                                <select class="form-control" name='setting["water_font_path"]'>
+                                    <option value="./Public/font/simsun.ttc">宋体</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group text" <if condition="$setting['water_type'] eq 0">style="display:block"</if>>
+                            <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                            <label class="col-sm-2 control-label">字体大小：</label>
+                            <div class="col-sm-2">
+                                <input type="text" name='setting["water_font_size"]' class="form-control" value="{$setting['water_font_size']|default='12'}">
+                            </div>
+                            <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 单位：px</span>
+                        </div>
+                        <div class="form-group text" <if condition="$setting['water_type'] eq 0">style="display:block"</if>>
+                            <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                            <label class="col-sm-2 control-label">水印位置：</label>
+                            <div class="col-sm-2">
+                                <select class="form-control" name='setting["water_font_pos"]'>
+                                    <option value="1"<if condition="$setting['water_font_pos'] eq 1"> selected</if>>左上</option>
+                                    <option value="2"<if condition="$setting['water_font_pos'] eq 2"> selected</if>>上中</option>
+                                    <option value="3"<if condition="$setting['water_font_pos'] eq 3"> selected</if>>右上</option>
+                                    <option value="4"<if condition="$setting['water_font_pos'] eq 4"> selected</if>>左中</option>
+                                    <option value="5"<if condition="$setting['water_font_pos'] eq 5"> selected</if>>居中</option>
+                                    <option value="6"<if condition="$setting['water_font_pos'] eq 6"> selected</if>>右中</option>
+                                    <option value="7"<if condition="$setting['water_font_pos'] eq 7"> selected</if>>左下</option>
+                                    <option value="8"<if condition="$setting['water_font_pos'] eq 8"> selected</if>>下中</option>
+                                    <option value="9"<if condition="$setting['water_font_pos'] eq 9"> selected</if>>右下</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group no" <if condition="$setting['water_type'] eq 1">style="display:block"</if>>
+                            <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                            <label class="col-sm-2 control-label">水印图片：</label>
+                            <div class="col-sm-2">
+                                <div class="input-group uploaderbox">
+                                    <input type="hidden" name='setting["water_img"]' value="{$setting['water_img']}"/>
+                                    <img src="{$setting['water_img']}" width="150" height="75" class="img-responsive">
+                                    <input type="file" id="water_img"/>
+                                </div>
+                            </div>
+                        </div>
+                       <!--  <div class="form-group text" <if condition="$setting['water_type'] eq 0">style="display:block"</if>>
+                            <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                            <label class="col-sm-2 control-label">是否加粗：</label>
+                            <div class="col-sm-10">
+                                 <label class="radio-inline"><input type="radio" value="0" name='setting["water_font_weight"]'<if condition="$setting['water_font_weight'] eq 0"> checked</if>>否</label>
+                                <label class="radio-inline"><input type="radio" value="1" name='setting["water_font_weight"]'<if condition="$setting['water_font_weight'] eq 1"> checked</if>>是</label>
+                            </div>
+                        </div>
+                        <div class="form-group text no" <eq name='setting["water_status"]' value="1"><if condition="($setting['water_type'] eq 0) OR ($setting['water_type']) eq 1">style="display:block"</if></eq>>
+                            <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                            <label class="col-sm-2 control-label">图片宽 / 高：</label>
+                            <div class="col-sm-2">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <input type="text" name='setting["water_width"]' class="form-control" value="{$setting['water_width']|default='100'}">
+                                </div>
+                                <div class="col-xs-4">
+                                    <input type="text" name='setting["water_height"]' class="form-control" value="{$setting['water_height']|default='20'}">
+                                </div> 
+                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 单位：px</span>
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="form-group no" <eq name='setting["water_status"]' value="1"><if condition="($setting['water_type'] eq 0) OR ($setting['water_type']) eq 1">style="display:block"</if></eq>>
+                            <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                            <label class="col-sm-2 control-label">水印背景色：</label>
+                            <div class="col-sm-2">
+                                <input type="text" name='setting["water_bg"]' id="water-bgcolor" class="form-control" value="{$setting['water_bg']|default='#000000'}" data-color-format="hex">
+                            </div>
+                        </div>-->
+                        <div class="form-group no" <if condition="$setting['water_type'] eq 1">style="display:block"</if>>
+                            <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                            <label class="col-sm-2 control-label">水印透明度：</label>
+                            <div class="col-sm-2">
+                                <input type="text" name='setting["water_alpha"]' class="form-control" value="{$setting['water_alpha']|default='1'}">
+                            </div>
+                            <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 1-100之间的数字</span>
+                        </div>
+                       <!--  <div class="form-group no" <eq name='setting["water_status"]' value="1"><if condition="($setting['water_type'] eq 0) OR ($setting['water_type']) eq 1">style="display:block"</if></eq>>
+                            <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                            <label class="col-sm-2 control-label">水印质量：</label>
+                            <div class="col-sm-2">
+                                <input type="text" name='setting["water_quality"]' class="form-control" value="{$setting['water_quality']|default='90'}">
+                            </div>
+                            <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 0-100 数值越大，质量越高</span>
+                        </div> -->
+                        <div class="form-group no" <if condition="$setting['water_type'] eq 1">style="display:block"</if>>
+                            <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                            <label class="col-sm-2 control-label">水印位置：</label>
+                            <div class="col-sm-2">
+                                <select class="form-control" name='setting["water_pos"]'>
+                                    <option value="1"<if condition="$setting['water_pos'] eq 1"> selected</if>>左上</option>
+                                    <option value="2"<if condition="$setting['water_pos'] eq 2"> selected</if>>上中</option>
+                                    <option value="3"<if condition="$setting['water_pos'] eq 3"> selected</if>>右上</option>
+                                    <option value="4"<if condition="$setting['water_pos'] eq 4"> selected</if>>左中</option>
+                                    <option value="5"<if condition="$setting['water_pos'] eq 5"> selected</if>>居中</option>
+                                    <option value="6"<if condition="$setting['water_pos'] eq 6"> selected</if>>右中</option>
+                                    <option value="7"<if condition="$setting['water_pos'] eq 7"> selected</if>>左下</option>
+                                    <option value="8"<if condition="$setting['water_pos'] eq 8"> selected</if>>下中</option>
+                                    <option value="9"<if condition="$setting['water_pos'] eq 9"> selected</if>>右下</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                        <div class="form-group">
+                            <div class="col-sm-12 col-sm-offset-2">
+                                <button class="btn btn-primary" type="submit" data-form-action="App.submit_form"><i class="fa fa-check"></i> 保存</button>　<button  type="reset" class="btn btn-white btn-bitbucket"><i class="fa fa-refresh"></i> 重置</button>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script type="text/javascript">
+         seajs.use(['upload'], function(upload){
+                upload.uploadify('#water_img','water','image');
+                $("input#water-text-color").minicolors({theme: 'bootstrap'});
+                $("input#water-bgcolor").minicolors({theme: 'bootstrap'});
+          });
+    </script>

@@ -1,0 +1,26 @@
+<include file="Public:header" />
+
+<!-- 主体内容-开始 -->
+<div id="content" class="main">
+  <div class="content-block clearfix">
+    <div class="mahua sarch-results">
+			为您找到与“<span>{$key}</span>”相关的笑话 {$count}条
+	</div>
+    <div id="j-main-list" class="col1 main-list">
+        <include file="Public:joke" />
+        <div class="pagination">
+        {$page}
+        </div>
+    </div>
+    <div class="col2">
+    <include file="Index:right" />
+    </div>
+  </div>
+</div>
+<!-- 主体内容-结束 -->
+<include file="Public:indexfooter" />
+<script type="text/javascript">
+	seajs.use(['user'], function(user) {
+		user.returnTop();
+	});
+</script>

@@ -1,0 +1,15 @@
+<dl class="img-list">
+	<dt>
+		<a href="javascript:;" target="_blank"><h2>搞笑图片</h2></a>
+	</dt>
+	<dd class="clearfix">
+		<volist name="pic" id="val" offset="0" length="4">
+		<a href="/xiaohua/{$val.id}.html" target="_blank">
+			<div><img alt="" src="{$val.image}"></div>
+			<span>{$val.title}</span>
+		</a>
+		</volist>
+	</dd>
+</dl>
+{$adv['Pc_Indexys']}
+</br>

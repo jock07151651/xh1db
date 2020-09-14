@@ -1,0 +1,41 @@
+<include file="Public:header" />
+<!-- 主体内容-开始 -->
+<div id="content" class="main">
+  <div class="content-block clearfix">
+    <div id="content-left" class="col1">
+		<div class="xiajiong tags-info">
+			<img src="{$tag_info.image}" alt="{$tag_info.name}">
+			<dl>
+				<dt><h1>{$tag_info.name}</h1></dt>
+				<dd class="tags-info-content"><p>{$tag_info.description}</p></dd>
+				<dd><span>相关笑话：<i>{$count}条</i></span><span>今日新增{$day_count}条</span></dd>
+				<dd>
+					<span class="action-btn sharebtn" data-id="{$val.id}"><img src="/Public/images/fen-h.png" h_src="/Public/images/fen.png" alt="分享" style="width:18px;height:18px;">
+                        <div style="display:none" id="sharedata-{$val.id}">{$tag_info.name}（来自:{$setting["site_name"]}）|#|{$setting.site_domain}/tags/{$tag_info.id}_1.html|#|{$setting.site_domain}{$tag_info['image']}|#|{$setting.site_domain}/tags/{$tag_info.id}_1.html</div>
+                        <span class="bdsharebuttonbox bdsharebtn" style="display:none">
+                            <a href="javascript:void(0);" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+                            <a href="javascript:void(0);" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                            <a href="javascript:void(0);" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+                            <a href="javascript:void(0);" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+                        </span>
+                    </span>
+				</dd>
+			</dl>
+		</div>
+		<div id="j-main-list" style="position:relative;">
+        <include file="Public:joke" />
+    </div>
+		<div class="pagination">
+        {$page}
+        </div>
+    </div>
+    <div class="col2">
+		<include file="Public:tags" />
+        <include file="Public:pic" />
+		<include file="Public:text" />
+    </div>
+  </div>
+  <div id="reward" class="joke-buy-box" style="display: none; top: 0; left: 0;"></div>
+</div>
+<!-- 主体内容-结束 -->
+<include file="Public:footer" />

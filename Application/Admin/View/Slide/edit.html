@@ -1,0 +1,88 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox-title">
+                <h5>幻灯片管理</h5>
+            </div>
+            <div class="ibox-content">
+                <a href="javascript:void(0)" link-url="{:U('slide/index')}"><button class="btn btn-primary btn-sm" type="button"><i class="fa fa-file-image-o"></i> 幻灯片管理</button></a>
+                <a href="javascript:void(0)" link-url="{:U('slidecate/index')}"><button class="btn btn-primary btn-sm" type="button"><i class="fa fa-file-image-o"></i> 分类管理</button></a>
+                <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                <form class="form-horizontal m-t-md" submit-url="{:U('slide/edit')}" method="post">
+                    <input type="hidden" name="id" value="{$slide.id}">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">标题：</label>
+                        <div class="col-sm-2">
+                            <input type="text" name="name" value="{$slide.name}" class="form-control" required data-msg-required="请输入标题" required data-msg-required="请输入敏感词">
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">链接：</label>
+                        <div class="col-sm-2">
+                            <input type="text" name="url" value="{$slide.url}" class="form-control" required data-msg-required="请输入链接" required data-msg-required="请输入敏感词">
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">图片：</label>
+                        <div class="col-sm-2">
+                            <div class="input-group uploaderbox">
+                                <input type="hidden" name="image" value="{$slide.image}" />
+                                <img src="{$slide['image']}" width="150" height="75" class="img-responsive">
+                                <input type="file" id="image"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">分类：</label>
+                        <div class="col-sm-2">
+                            <select name="cid" class="form-control">
+                                <volist name="slidecate" id="val">
+                                <option value="{$val.id}"<eq name="val['id']" value="slide['id']">selected</eq>>{$val.name}</option>
+                                </volist>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">状态：</label>
+                        <div class="col-sm-2">
+                            <select name="status" class="form-control">
+                                <option value="1"<eq name="val['status']" value="1">selected</eq>>显示</option>
+                                <option value="0"<eq name="val['status']" value="0">selected</eq>>隐藏</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">展示文字：</label>
+                        <div class="col-sm-2">
+                            <textarea name="text" class="form-control" rows="3" cols="20">{$slide.text}</textarea>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">描述：</label>
+                        <div class="col-sm-2">
+                            <textarea name="description" class="form-control" rows="3" cols="20">{$slide.description}</textarea>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                    <div class="form-group">
+                        <div class="col-sm-12 col-sm-offset-2">
+                            <button class="btn btn-primary" type="submit" data-form-action="App.submit_form"><i class="fa fa-check"></i> 保 存</button>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+    <script type="text/javascript">
+        seajs.use(['upload'], function(upload){
+            upload.uploadify('#image','slide','image');
+        });
+    </script>

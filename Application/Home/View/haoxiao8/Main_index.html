@@ -1,0 +1,27 @@
+<include file="Public:header" />
+
+<!-- 主体内容-开始 -->
+<div class="main clearfix" style="position:relative;">
+
+	<include file="User:userBanner" />
+	<div class="left" style="width:690px;float:left;">
+    	<ul class="user-nav">
+        	<li><a class="hover" href="/user/{$user_info.id}">投稿 {$user_info.send_num}</a></li>
+            <li><a href="/user/follows/{$user_info.id}">关注 {$user_info.follows}</a></li>
+            <li><a href="/user/fans/{$user_info.id}">粉丝 {$user_info.fans}</a></li>
+        </ul>
+    <div id="j-main-list" style="position:relative;">
+		<include file="Public:joke" />
+		</div>
+		<div class="comment">
+			<div class="page">{$page}</div>
+		</div>
+	</div>
+
+	<include file="User:userRight" />
+
+
+</div>
+<!-- 主体内容-结束 -->
+
+<include file="Public:footer1" />

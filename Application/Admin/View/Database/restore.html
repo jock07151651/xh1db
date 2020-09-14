@@ -1,0 +1,39 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox-title">
+                <h5>数据库还原</h5>
+            </div>
+            <div class="ibox-content">
+                <a href="javascript:void(0)" link-url="{:U('database/backup')}"><button class="btn btn-primary btn-sm" type="button"><i class="fa fa-plus-cloud"></i> 数据库备份</button></a>
+                <form class="form-horizontal m-t-md" submit-url="{:U('database/backup')}" method="post">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>备份文件</th>
+                                <th class="text-center">文件大小</th>
+                                <th class="text-center">备份时间</th>
+                                <th class="text-center">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <volist name="restore" id="val">
+                            <tr>
+                                <td>{$val.filename}</td>
+                                <td class="text-center">{$val.filesize}Kb</td>
+                                <td class="text-center">{$val.maketime}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <a href="javascript:void(0)" link-url="{:U('database/recover', array('pre' => $val['pre'],'number' => $val['number']))}"><button class="btn btn-white btn-sm" type="button"><em class="fa fa-cubes"></em>恢复</button></a>
+                                        <a href="javascript:void(0)" link-url="{:U('database/delete_backup', array('filename' => $val['filename']))}"><button class="btn btn-white btn-sm" type="button"><em class="fa fa-trash-o"></em>删除</button></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            </volist>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

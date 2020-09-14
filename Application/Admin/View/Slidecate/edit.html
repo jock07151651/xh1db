@@ -1,0 +1,47 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox-title">
+                <h5>添加幻灯片分类</h5>
+            </div>
+            <div class="ibox-content">
+                <a href="javascript:void(0)" link-url="{:U('slide/index')}"><button class="btn btn-primary btn-sm" type="button"><i class="fa fa-file-image-o"></i> 幻灯片管理</button></a>
+                <a href="javascript:void(0)" link-url="{:U('slidecate/index')}"><button class="btn btn-primary btn-sm" type="button"><i class="fa fa-file-image-o"></i> 分类管理</button></a>
+                <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                <form class="form-horizontal m-t-md" submit-url="{:U('slidecate/edit')}" method="post">
+                    <input type="hidden" name="id" value="{$slidecate.id}">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">分类名称：</label>
+                        <div class="col-sm-2">
+                            <input type="text" name="name" value="{$slidecate.name}" class="form-control" required data-msg-required="请输入分类名称">
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">分类描述：</label>
+                        <div class="col-sm-2">
+                            <textarea name="remark" class="form-control" rows="3" cols="20">{$slidecate.remark}</textarea>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">状态：</label>
+                        <div class="col-sm-2">
+                            <select name="status" class="form-control">
+                                <option value="1"<eq name="slidecate['status']" value="1"> selected</eq>>显示</option>
+                                <option value="0"<eq name="slidecate['status']" value="0"> selected</eq>>隐藏</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                    <div class="form-group">
+                        <div class="col-sm-12 col-sm-offset-2">
+                            <button class="btn btn-primary" type="submit" data-form-action="App.submit_form"><i class="fa fa-check"></i> 保 存</button>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

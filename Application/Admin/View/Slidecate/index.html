@@ -1,0 +1,38 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox-title">
+                <h5>幻灯片分类管理</h5>
+            </div>
+            <div class="ibox-content">
+                <a href="javascript:void(0)" link-url="{:U('slide/add')}"><button class="btn btn-primary btn-sm" type="button"><i class="fa fa-plus-circle"></i> 添加幻灯片</button></a>
+                <a href="javascript:void(0)" link-url="{:U('slidecate/add')}"><button class="btn btn-primary btn-sm" type="button"><i class="fa fa-plus-circle"></i> 添加分类</button></a>
+                <table class="table table-bordered m-t-md">
+                    <thead>
+                        <tr>
+                            <th class="text-center"><input type="checkbox"></th>
+                            <th>分类名称</th>
+                            <th>分类描述</th>
+                            <th class="text-center w170">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <volist name="slidecate" id="val">
+                        <tr>
+                            <td class="text-center"><input type="checkbox" name="id[]" value="{$val.id}"></td>
+                            <td>{$val.name}</td>
+                            <td>{$val.remark}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <a href="javascript:void(0)" link-url="{:U('slidecate/edit',array('id' => $val['id']))}"><button class="btn btn-white btn-sm" type="button"><em class="fa fa-eye"></em> 修改</button></a>
+                                    <a href="javascript:void(0)" data-url="{:U('slidecate/delete')}" data-id="{$val['id']}" data-action="App.del"><button class="btn btn-white btn-sm" type="button"><em class="fa fa-trash-o"></em> 删除</button></a>
+                                </div>
+                            </td>
+                        </tr>
+                        </volist>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,95 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox-title">
+                <h5>添加角色</h5>
+            </div>
+            <div class="ibox-content">
+                <a href="javascript:void(0)" link-url="{:U('role/index')}"><button class="btn btn-primary btn-sm" type="button"><i class="fa fa-plus-circle"></i> 角色管理</button></a>
+                <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                <form class="form-horizontal m-t-md" submit-url="{:U('role/edit')}" method="POST">
+                    <input type="hidden" name="id" value="{$role.id}">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">角色：</label>
+                        <div class="col-sm-2">
+                            <input type="text" name="name" value="{$role.name}" class="form-control" required data-msg-required="请输入角色">
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">备注：</label>
+                        <div class="col-sm-2">
+                            <input type="text" name="remark" value="{$role.remark}" class="form-control">
+                        </div>
+                    </div>
+                   
+                    <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">权限列表：</label>
+                        <div class="col-sm-2" id="node_ids">
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                    <div class="form-group">
+                        <div class="col-sm-12 col-sm-offset-2">
+                            <button class="btn btn-primary" type="submit" data-form-action="App.submit_form"><i class="fa fa-check"></i> 保 存</button>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    seajs.use(['menu'],function(menu) {
+        var node = '';
+        var node_ids = '{$role["node_ids"]}';
+        node_ids = node_ids.split(',');
+        
+        for(var i in menu){
+            var checked = '';
+            var c = check(node_ids,menu[i].id);
+            if(c) checked  = 'checked';
+
+            node += '<div><input type="checkbox" name="node_ids[]" value="'+menu[i].id+'" '+checked+'/> ' + menu[i].name;
+            if(menu[i]['sub']) {
+                var sub = menu[i]['sub'];
+                for(var j in sub) {
+                    var checked = '';
+                    var c = check(node_ids,sub[j].id);
+                    if(c) checked  = 'checked';
+
+                    node += '<div>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="node_ids[]" value="'+sub[j].id+'" '+checked+'/> ' + sub[j].name;
+                    if(sub[j]['sub']) {
+                        var checked = '';
+                        var ssub = sub[j]['sub'];
+                        for(var k in ssub) {
+                            var c = check(node_ids,ssub[k].id);
+                            if(c) checked  = 'checked';
+
+                            node += '<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="node_ids[]" value="'+ssub[k].id+'" '+checked+'/> ' + ssub[k].name;
+                            node += '</div>';
+                        }
+                    }
+                    node += '</div>';
+                }
+            }
+            node += '</div>';
+        }
+        $('#node_ids').html(node);
+
+    });
+
+    function check(arr,val) {
+        for(var i=0 ; i < arr.length; i++) {
+            if(arr[i] == val) {
+                return true;
+            }
+        }
+        return false;
+    }
+</script>

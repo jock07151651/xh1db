@@ -1,0 +1,337 @@
+<div style="display:none">
+<include file="Public:header" />
+</div>
+<!-- <link rel="stylesheet" type="text/css" href="__PUBLIC__/js/uploadfile.min.css"> -->
+
+<!-- 主体内容-开始 -->
+<style>
+.main{width:100%}
+.publish .publish-title dd{height:auto;}
+.header-nav{width:100%}
+dl{    clear: both;
+    overflow: hidden;}
+.publish-content dd input{float:none;}
+			label{display:inline-block;width:80px;padding:5px 0;margin:1px;background:#E6E6E6;height:20px;overflow: hidden;}
+			label input{margin-left:2px;}
+			.thout label{margin-right: 1px;}
+		</style>
+<div class="main clearfix publish">
+
+
+
+<div>
+	<if condition="$allow eq 1">
+<form id="publish-joke"> 
+<input type="hidden" name="image" value="" id="image"/>
+<dl class="publish-title thout"> 
+	<dd>
+		<label for="type3"><input type="radio" id="type3" name="type" value="3" checked> 动态图</label>
+
+	</dd> 
+</dl> 
+
+<dl class="publish-title thout"> 
+	<dt>看点归类：</dt> 
+	<dd style="width:auto">
+<label for="tags1"><input type="checkbox" name="tags_id[]" id="tags1" value="1" checked> 动态图</label>
+
+<label for="tags31"><input type="checkbox" name="tags_id[]" id="tags31" value="31" /> 逗比</label>
+<label for="tags32"><input type="checkbox" name="tags_id[]" id="tags32" value="32" /> 牛人</label>
+<label for="tags33"><input type="checkbox" name="tags_id[]" id="tags33" value="33" /> 奇葩</label>
+<label for="tags17"><input type="checkbox" name="tags_id[]" id="tags17" value="17" /> 雷人恶搞</label>
+<hr>
+<label for="tags29"><input type="checkbox" name="tags_id[]" id="tags29" value="29" /> 碉堡了</label>
+<label for="tags7"><input type="checkbox" name="tags_id[]" id="tags7" value="7" /> 爆笑图片</label>
+<label for="tags11"><input type="checkbox" name="tags_id[]" id="tags11" value="11" /> 福利</label>
+<hr>
+<label for="tags23"><input type="checkbox" name="tags_id[]" id="tags23" value="23" /> 动物</label>
+<label for="tags22"><input type="checkbox" name="tags_id[]" id="tags22" value="22" /> 狗狗</label>
+<label for="tags21"><input type="checkbox" name="tags_id[]" id="tags21" value="21" /> 猫咪</label>
+<label for="tags38"><input type="checkbox" name="tags_id[]" id="tags38" value="38" /> 萌呆了</label>
+
+<hr>
+<label for="tags24"><input type="checkbox" name="tags_id[]" id="tags24" value="24" /> 趣事</label>
+<label for="tags25"><input type="checkbox" name="tags_id[]" id="tags25" value="25" /> 糗事</label>
+<label for="tags26"><input type="checkbox" name="tags_id[]" id="tags26" value="26" /> 儿童</label>
+<label for="tags27"><input type="checkbox" name="tags_id[]" id="tags27" value="27" /> 男女</label>
+
+<hr>
+<label for="tags28"><input type="checkbox" name="tags_id[]" id="tags28" value="28" /> 美女</label>
+<label for="tags5"><input type="checkbox" name="tags_id[]" id="tags5" value="5" /> 内涵图片</label>
+
+<label for="tags30"><input type="checkbox" name="tags_id[]" id="tags30" value="30" /> 熊孩子</label>
+
+
+<label for="tags10"><input type="checkbox" name="tags_id[]" id="tags10" value="10" /> 欢乐自拍 </label>
+<label for="tags9"><input type="checkbox" name="tags_id[]" id="tags9" value="9" /> 冷笑话图片</label>
+<label for="tags18"><input type="checkbox" name="tags_id[]" id="tags18" value="18" /> 爱情</label>
+<label for="tags20"><input type="checkbox" name="tags_id[]" id="tags20" value="20" /> 漫画</label>
+
+<label for="tags35"><input type="checkbox" name="tags_id[]" id="tags35" value="35" /> 求PS</label>
+<label for="tags36"><input type="checkbox" name="tags_id[]" id="tags36" value="36" /> 好基友</label>
+<label for="tags37"><input type="checkbox" name="tags_id[]" id="tags37" value="37" /> 明星</label>
+
+<label for="tags40"><input type="checkbox" name="tags_id[]" id="tags40" value="40" /> 技巧</label>
+<label for="tags2"><input type="checkbox" name="tags_id[]" id="tags2" value="2" /> 女汉子</label>
+
+<label for="tags12"><input type="checkbox" name="tags_id[]" id="tags12" value="12" /> 穿帮</label>
+<label for="tags16"><input type="checkbox" name="tags_id[]" id="tags16" value="16" /> 无厘头</label>
+<label for="tags19"><input type="checkbox" name="tags_id[]" id="tags19" value="19" /> 随手拍</label> 
+<label for="tags39"><input type="checkbox" name="tags_id[]" id="tags39" value="39" /> 大湿兄与小湿妹</label>
+	</dd> 
+</dl> 
+
+<dl class="publish-title"> 
+	<dt>笑话标题：</dt> 
+	<dd>
+		<input type="text" name="title" style="width:300px" placeholder="起个逗逼点的标题" id="title" />
+	</dd> 
+	<dd class="publish-message message-title"></dd> 
+</dl> 
+
+<dl class="publish-type" style="display:none">
+	<dt>类别：</dt> 
+	<dd>
+		<a href="javascript:void(0);" data-type="0" class="active">图文</a>
+		<a href="javascript:void(0);" data-type="1" >视频</a>
+	</dd>
+	<input type="hidden" id="is_video" name="is_video" value="0"/>
+</dl>
+
+<dl class="publish-content"> 
+
+<dt id="container" class="news"> 
+	<span>输入内容：</span>
+	<span id="fileuploader">插入图片</span>
+	<span id="show_info" style="display:none">等待……</span>
+</dt>
+
+<dd class="news">
+	<script id="content" name="content" type="text/plain" style="width:645px;height:240px;"></script> 
+</dd>
+
+<dt id="url" style="display:none;"> 
+	<span>优酷flash视频地址：</span>
+	<input type="text" name="url" value="" placeholder="优酷flash视频地址" id="title" style="color: rgb(190, 190, 190);">
+</dt>
+
+<dd class="publish-message message-content" style="color:red;"></dd>
+
+<dd class="publish-btn"> 
+<input type="button" value="投稿" id="form_publish" /> 
+	<div class="sell-joke"> 
+
+		<input type="hidden" name="is_package" id="is_package" value="0" /> 
+		<input type="hidden" name="package_fee" id="package_fee" value="0" /> 
+
+		<span class="sell-no" data-id="50"><i></i>我想被包养</span> 
+
+		<span class="sell-btn" data-id="50">50积分</span> 
+
+		<span class="sell-btn" data-id="100">100积分</span> 
+
+		<span class="sell-btn" data-id="200">200积分</span> 
+
+	</div> 
+
+	
+
+</dd>
+</dl>
+</form>
+	<else/>
+		<p>今天的投稿次数已经用完了，请明天再投吧！</p>
+	</if>
+
+
+
+</div>
+</div>
+
+
+    <script type="text/javascript" src="__PUBLIC__/js/plupload/plupload.full.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/qiniu.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/ui.js"></script>
+<script type="text/javascript">
+
+	seajs.use(['app','ueditor_config','ueditor'],function(App) {
+
+		//包养
+		var sell = $('.sell-no'),
+			sellVBtn = $('.sell-btn'),
+			is_package = $('#is_package'),
+			package_fee = $('#package_fee');
+		sell.click(function(){
+			var self = $(this);
+			if(self.hasClass('sell-yes')){
+				self.removeClass('sell-yes');
+				is_package.val(0);
+				sellVBtn.removeClass('hover');
+			}else{
+				self.addClass('sell-yes');
+				is_package.val(1);
+				sellVBtn.eq(0).addClass('hover');
+				package_fee.val(sellVBtn.eq(0).data('id'));
+			};
+		});
+		sellVBtn.click(function(){
+			var self = $(this),
+				num = self.data('id');
+			if(sell.hasClass('sell-yes')){
+				package_fee.val(num);
+				self.addClass('hover').siblings('.sell-btn').removeClass('hover');
+			};
+		});
+		//类别
+		$('.publish-type a').click(function(){
+			var self = $(this),
+				type = self.data('type');
+			self.addClass('active').siblings().removeClass('active');
+			$('#is_video').val(type);
+			$('.message-content').html('');
+			if(type){
+				$('.news').hide();
+				$('#url').show();
+			}else{
+				$('.news').show();
+				$('#url').hide();
+			};
+		});
+
+		
+		//投稿编辑器
+		var ue = UE.getEditor('content', {
+			toolbars: [],
+		    initialFrameWidth : 500,
+		    initialFrameHeight : 260,
+			autoHeightEnabled : true,
+			pasteplain : true,
+			initialContent : '',
+			autoClearinitialContent : true,
+			enterTag : 'br',
+			serverUrl : '',
+			imageScaleEnabled : false
+		});
+
+		 //引入Plupload 、qiniu.js后
+    var uploader = Qiniu.uploader({
+        runtimes: 'html5,flash,html4',    //上传模式,依次退化
+        browse_button: 'fileuploader',       //上传选择的点选按钮，**必需**
+        uptoken_url: '/public/token',            //Ajax请求upToken的Url，**强烈建议设置**（服务端提供）
+         //uptoken : '9GcsZeCchX2kRs8dmce1I6nA4FNSXvPV0gmTnmXH:k8aFF1mmBCK7wzvYm2t46CQ0y5A=:eyJzY29wZSI6InhpYWppb25nIiwiZGVhZGxpbmUiOjE0NDM0MzEwMjR9', //若未指定uptoken_url,则必须指定 uptoken ,uptoken由其他程序生成
+         unique_names: true, // 默认 false，key为文件名。若开启该选项，SDK为自动生成上传成功后的key（文件名）。
+        save_key: true,   // 默认 false。若在服务端生成uptoken的上传策略中指定了 `sava_key`，则开启，SDK会忽略对key的处理
+        domain: 'http://qiniu-plupload.qiniudn.com/',   //bucket 域名，下载资源时用到，**必需**
+        get_new_uptoken: false,  //设置上传文件的时候是否每次都重新获取新的token
+        container: 'container',           //上传区域DOM ID，默认是browser_button的父元素，
+        max_file_size: '100mb',           //最大文件体积限制
+        flash_swf_url: '__PUBLIC__/js/plupload/Moxie.swf',  //引入flash,相对路径
+        max_retries: 3,                   //上传失败最大重试次数
+        dragdrop: true,                   //开启可拖曳上传
+        drop_element: 'container',        //拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
+        chunk_size: '4mb',                //分块上传时，每片的体积
+        auto_start: true,                 //选择文件后自动上传，若关闭需要自己绑定事件触发上传
+        init: {
+        	'BeforeUpload': function(up, files) {
+               if(UE.getEditor('content').getContent().indexOf('<img')>-1 || $('#fileuploader').show().html() == '上传中...'){
+					$('#fileuploader').show().html('只能上传一张图片');
+					return false;
+				}else{
+					$('#fileuploader').hide();
+					$('#show_info').show().html('上传中...');
+					//$('#fileuploader').show().html('上传中...');
+				}
+            },
+            'FileUploaded': function(up, file, info) {
+            	var data  = eval("("+info+")");
+            	var image = 'http://img.xiajiong.com/'+data.key+'/w4';
+            	if(file.type == 'image/gif') {
+            		image = 'http://img.xiajiong.com/'+data.key;
+            	}
+                
+                $('#image').val(image);
+
+              	var imgHtml = '<img src="'+image+'" alt="" val="'+image+'"  />';			
+				if(parseInt(ue.getContentLength(true)) == 0){
+					//ue.focus();
+				};
+				ue.execCommand('insertHtml', imgHtml);	//插入图片
+				//$('#fileuploader').show().html('上传完成');
+				$('#show_info').show().html('上传完成');
+            },
+            'Error': function(up, err, errTip) {
+            	$('#fileuploader').show().html(errTip);
+            }
+        }
+    });
+
+		//ajax
+		var tiemer = "";
+		var form = $('#publish-joke'),
+			submit = $('#form_publish'),
+			title = $('.message-title'),
+			content = $('.message-content');
+
+
+		var fun = function bClick(){
+		//submit.click(function(){
+			
+			var data = form.serializeObject();
+			if(!data.title){
+				title.html('标题不能为空！');
+				return;
+			}else{
+				title.html('');
+			};
+			if(parseInt(data.is_video)){
+				if(!data.url){
+					content.html('视频URL不能为空！');
+					return;
+				}else{
+					if(data.url.indexOf('.youku.com') == -1){
+						content.html('视频地址必须是优酷的flash视频地址');
+						return;
+					}else{
+						content.html('');
+					};
+				};
+			}else{
+				if(!data.content){
+					content.html('内容不能为空！');
+					return;
+				}else{
+					content.html('');
+				};
+			};
+			
+			App.request({
+				url : '/joke/publish2',
+				data : data,
+				success: function(result){
+					var re = result;
+					if(re.err){
+						App.alert(re.msg,function(){
+							location.href = '';
+						});
+					}else{
+						App.alert(re.msg);
+					};
+				}
+			});
+
+			$("#form_publish").unbind("click");
+				tiemer = setTimeout(function(){
+					$("#form_publish").click(fun);
+				},5000);
+		};
+		$("#form_publish").click(fun);
+		//});
+
+	});
+
+
+
+
+</script>
+
+<!-- 主体内容-结束 -->

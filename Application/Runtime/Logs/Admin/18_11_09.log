@@ -1,0 +1,6 @@
+[ 2018-11-09T11:01:44+08:00 ] 127.0.0.1 /index.php?m=Admin&c=cate&a=getcate
+ERR: 无法加载控制器:Cate
+
+[ 2018-11-09T17:42:29+08:00 ] 127.0.0.1 /index.php?m=Admin&c=cate&a=getcate
+ERR: 无法加载控制器:Cate
+

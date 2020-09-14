@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<title>{$title} - {$setting["site_name"]}</title>
+<script type="text/javascript">
+ var url = "{$setting['site_murl']}";
+ function GetUrlRelativePath(){var url=document.location.toString(),arrUrl=url.split("//"),start = arrUrl[1].indexOf("/"),relUrl = arrUrl[1].substring(start);if(relUrl.indexOf("?") != -1){relUrl = relUrl.split("?")[0]}return relUrl;}
+ if((navigator.userAgent.match(/(iPhone|iPod|Android|ios|iPad)/i))){location.replace(url+GetUrlRelativePath());};
+</script>
+<link rel="icon" href="/Public/index/qiushibaike/images/favicon.ico" type="image/x-icon" >
+<meta name="keywords" content="<if condition="$keywords neq NULL">{$keywords}<else/>{$title}</if>" />
+<meta name="description" content="<if condition="$description neq NULL">{$description}<else/>{$title}</if>" />
+{$setting['qq_code']|htmlspecialchars_decode}
+{$setting['sina_code']|htmlspecialchars_decode}
+<link rel="alternate" type="application/rss+xml" title="{$setting["site_name"]}" href="{$setting['site_url']}/rss"/>
+<link rel="stylesheet" type="text/css" href="/Public/index/qiushibaike/css/main.css">
+<link rel="stylesheet" type="text/css" href="/Public/js/plugins/slide/css/slide.min.css">
+<script type="text/javascript" src="/Public/js/sea.js"></script>
+<script type="text/javascript" src="/Public/index/qiushibaike/js/sea_config.js"></script>
+</head>
+<body>
+<?php
+$url = $_SERVER["REQUEST_URI"];
+?>
+<!-- 顶部-开始 -->
+<div id="header" class="head">
+  <div class="content-block">
+    <div class="logo" id="hd_logo"><a href="/"><img src="{$setting['site_logo']}"></a></div>
+    <div id="menu" class="menu-bar menu clearfix">
+        <a href="/"<php>if(mb_strlen($url) == 1){echo ' id="highlight"';}</php>>最新笑话</a>
+        <a href="/hotjoke"<php>if(strstr($url,"hotjoke")){echo ' id="highlight"';}</php>>热门笑话</a>
+        <a href="/tags"<php>if(strstr($url,"tags")){echo ' id="highlight"';}</php>>看点</a>
+        <a href="/text"<php>if(strstr($url,"text")){echo ' id="highlight"';}</php>>段子</a>
+        <a href="/pic"<php>if(strstr($url,"pic")){echo ' id="highlight"';}</php>>趣图</a>
+        <a href="/gif"<php>if(strstr($url,"gif")){echo ' id="highlight"';}</php>>动图</a>
+        <a href="/video"<php>if(strstr($url,"video")){echo ' id="highlight"';}</php>>视频</a>
+        <a href="/godreply"<php>if(strstr($url,"godreply")){echo ' id="highlight"';}</php>>神回复</a>
+        <a href="/shop"<php>if(strstr($url,"shop")){echo ' id="highlight"';}</php>>积分商城</a>
+    </div>
+    <div class="userbar clearfix">
+    	<if condition="$user eq NULL">
+    	<div class="logout">
+        	<a href="javascript:void(0);" class="fn-signin-required logintop" id="logintop" rel="nofollow">登录</a>
+            <a href="/account/register">注册</a>
+        </div>
+        <script type="text/javascript">var test = 0;</script>
+    	<else/>
+      <div class="login">
+      	<a target="_blank" href="/user" rel="external nofollow"><img class="global-avatar" src="{$user.avatar}"></a>
+      	<a href="/user" class="username" id="uname" rel="nofollow">{$user.username}</a>
+      </div>
+      <ul class="clearfix username-nav">
+        <li><a href="/user">我的消息</a></li>
+          <li><a href="/user/joke">我的投稿</a></li>
+          <li><a href="/user/review">我的评论</a></li>
+          <li><a href="/user/followlist">我的关注</a></li>
+          <li><a href="/user/fanslist">我的粉丝</a></li>
+          <li><a href="/user/msg">我的私信</a></li>
+          <li><a href="/user/followinfo">好友动态</a></li>
+          <li><a href="/user/gift">我的礼品</a></li>
+          <li><a href="/user/info">个人资料</a></li>
+          <li><a href="/account/logout">退出</a></li>
+    </ul>
+      <script type="text/javascript">var test = 1;</script>
+      </if>
+    </div>
+  </div>
+</div>
+<!-- 顶部-结束 -->
+<script type="text/javascript">
+	seajs.use(['user'], function(user){
+		var login = $('#logintop');
+		login.click(function(){
+			user.loginDialog();
+		});
+	});
+</script>

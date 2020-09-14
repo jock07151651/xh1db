@@ -1,0 +1,86 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox-title">
+                    <h5>附件设置</h5>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal" submit-url="{:U('setting/setting')}" method="POST">
+                        <input type="hidden" name="data" value="{$data}" />
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">允许上传图片格式：</label>
+                                <div class="col-sm-2">
+                                    <input type="text" id="attach_pic_type" name="setting['attach_pic_type']" value="{$setting['attach_pic_type']|default='jpg,png,gif'}" class="form-control valid" required data-msg-required="请输入允许上传图片格式">
+                                </div>
+                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 请用“,”分割，例如：jpg,png,gif</span>
+                            </div>
+                            <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">允许上传视频格式：</label>
+                                <div class="col-sm-2">
+                                    <input type="text" id="attach_video_type" name="setting['attach_video_type']" value="{$setting['attach_video_type']|default='swf,mpg,flv,mp4'}" class="form-control" required data-msg-required="请输入允许上传视频格式">
+                                </div>
+                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 请用“,”分割，例如：swf,mpg,flv,mp4</span>
+                            </div>
+                            <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">允许上传文件格式：</label>
+                                <div class="col-sm-2">
+                                    <input type="text" id="attach_file_type" name="setting['attach_file_type']" value="{$setting['attach_file_type']|default='zip,rar,doc,xls,pdf'}" class="form-control" required data-msg-required="请输入允许上传文件格式">
+                                </div>
+                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 请用“,”分割，例如：zip,rar,doc,xls,pdf</span>
+                            </div>
+                            <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">文件大小限制：</label>
+                                <div class="col-sm-2">
+                                    <input type="text" id="attach_limit_size" name="setting['attach_limit_size']" value="{$setting['attach_limit_size']|default='1024'}" class="form-control" required data-msg-required="请输入文件大小限制">
+                                </div>
+                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 单位：KB，不能超过服务器允许上传的最大设置，一般服务器不能超过2M。</span>
+                            </div>
+                            <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">文件夹生成方式：</label>
+                                <div class="col-sm-2">
+                                    <select class="form-control" name="setting['attach_save_type']">
+                                        <option value="d"<if condition="$setting['attach_save_type'] eq 'd'"> selected</if>>按日保存</option>
+                                        <option value="Y/d"<if condition="$setting['attach_save_type'] eq 'Y/d'"> selected</if>>按年/月保存</option>
+                                        <option value="Y/m/d"<if condition="$setting['attach_save_type'] eq 'Y/m/d'"> selected</if>>按年/月/日保存</option>
+                                    </select>
+                                </div>
+                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 如您的图片较多，建议选择“按年/月/日保存”。</span>
+                            </div>
+                            <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">文件名生成方式：</label>
+                                <div class="col-sm-2">
+                                    <select class="form-control" name="setting['attach_filename_type']">
+                                        <option value="d"<if condition="$setting['attach_filename_type'] eq 'd'"> selected</if>>按日保存</option>
+                                        <option value="Y/d"<if condition="$setting['attach_filename_type'] eq 'Y/d'"> selected</if>>按年/月保存</option>
+                                        <option value="Y/m/d"<if condition="$setting['attach_filename_type'] eq 'Y/m/d'"> selected</if>>按年/月/日保存</option>
+                                    </select>
+                                </div>
+                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 如您的图片较多，建议选择“按年/月/日保存”。</span>
+                            </div>
+                            <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">远程附件访问地址：</label>
+                                <div class="col-sm-2">
+                                    <input type="text" id="attach_full_url" name="setting['attach_full_url']" value="{$setting['attach_full_url']}" class="form-control" required data-msg-required="请输入远程附件访问地址">
+                                </div>
+                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 示例：http://www.yicms.com/uploads/</span>
+                            </div>
+                            <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                            <div class="form-group">
+                                <div class="col-sm-12 col-sm-offset-2">
+                                    <button class="btn btn-primary" type="submit" data-form-action="App.submit_form"><i class="fa fa-check"></i> 保 存</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+</div>

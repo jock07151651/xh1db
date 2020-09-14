@@ -1,0 +1,72 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox-title">
+                <h5>文件存储</h5>
+            </div>
+            <div class="ibox-content">
+                <form class="form-horizontal" submit-url="{:U('setting/setting')}" method="POST">
+                    <input type="hidden" name="data" value="{$data}" />
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">存储方式：</label>
+                            <div class="col-sm-9">
+                                <label class="radio-inline"><input type="radio" id="t1_1" value="0" name="setting['file_save_type']"<if condition="$setting['file_save_type'] eq 0"> checked</if>>系统默认</label>
+                                <label class="radio-inline"><input type="radio" id="t1_2" value="1" name="setting['file_save_type']"<if condition="$setting['file_save_type'] eq 1"> checked</if>>七牛云存储</label>
+                            </div>
+                        </div>
+                        <div class="form-group <if condition="($setting['file_save_type'] eq 0) OR ($setting['file_save_type'] eq '')">no</if>">
+                            <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                            <label class="col-sm-2 control-label">AccessKey：</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="setting['qiniu_access_key']" value="{$setting['qiniu_access_key']}" class="form-control" placeholder="AccessKey">
+                            </div>
+                        </div>
+                        <div class="form-group <if condition="($setting['file_save_type'] eq 0) OR ($setting['file_save_type'] eq '')">no</if>">
+                            <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                            <label class="col-sm-2 control-label">SecretKey：</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="setting['qiniu_secret_key']" value="{$setting['qiniu_secret_key']}" class="form-control" placeholder="SecretKey">
+                            </div>
+                        </div>
+                        <div class="form-group <if condition="($setting['file_save_type'] eq 0) OR ($setting['file_save_type'] eq '')">no</if>">
+                            <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                            <label class="col-sm-2 control-label">空间域名：</label>
+                            <div class="col-sm-3">
+                                <input type="text" name="setting['qiniu_domain']" value="{$setting['qiniu_domain']}" class="form-control" placeholder="空间域名">
+                            </div>
+                            <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 以http:// 开始，以/结束 例：http://img.yicms.com/</span>
+                        </div>
+                        <div class="form-group <if condition="($setting['file_save_type'] eq 0) OR ($setting['file_save_type'] eq '')">no</if>">
+                            <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                            <label class="col-sm-2 control-label">空间名称：</label>
+                            <div class="col-sm-3">
+                                <input type="text" name="setting['qiniu_name']" value="{$setting['qiniu_name']}" class="form-control" placeholder="空间名称">
+                            </div>
+                        </div>
+                        <div class="form-group <if condition="($setting['file_save_type'] eq 0) OR ($setting['file_save_type'] eq '')">no</if>">
+                            <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                            <label class="col-sm-2 control-label">图片处理样式：</label>
+                            <div class="col-sm-3">
+                                <input type="text" name="setting['qiniu_imgstyle']" value="{$setting['qiniu_imgstyle']}" class="form-control" placeholder="图片处理样式：">
+                            </div>
+                        </div>
+                        <div class="form-group <if condition="($setting['file_save_type'] eq 0) OR ($setting['file_save_type'] eq '')">no</if>">
+                            <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                            <label class="col-sm-2 control-label">获取AccessKey：</label>
+                            <div class="col-sm-2">
+                                <span class="help-block m-b-none"><a class="text-navy" href="http://www.qiniu.com/" title="获取AccessKey">马上获取</a></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12 col-sm-offset-2">
+                                <button class="btn btn-primary" type="submit" data-form-action="App.submit_form"><i class="fa fa-check"></i> 保 存</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

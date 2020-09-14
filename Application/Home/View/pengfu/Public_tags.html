@@ -1,0 +1,105 @@
+        <!--投稿-->
+        <div class="j-sent">
+            <a href="/joke/publish" class="left icon-contribute">
+                <i class="icon icon-publish"></i>我要发笑话
+            </a>
+        </div>
+        <!--审稿-->
+        <div class="j-sent">
+            <a href="/joke/audit" class="left icon-contribute">
+                <i class="icon icon-audit"></i>我要去审稿
+            </a>
+        </div>
+        <!--已签到-->
+        <div class="calendar calendar-out clearfix" id="ysign-box" <if condition="$is_sign neq 1">style="display:none"</if>>
+            <a href="javascript:void(0);" class="calendar-left">
+                <i class="icon icon24 icon-diary"></i>签到
+            </a>
+            <div class="calendar-info">
+                <p class="calendar-info-itme flca5">本次获得30分</p>
+                <p class="flca5">恭喜你离赢娶白富美又近了一步</p>
+            </div>
+        </div>
+
+        <!--未签到-->
+        <div class="calendar calendar-in" id="nosign-box" <if condition="$is_sign eq 1">style="display:none"<else/>style="display:block"</if>>
+            <a href="javascript:void(0);" id="user-sign" class="calendar-left">
+                <i class="icon icon24 icon-diary-s"></i>签到
+            </a>
+            <div class="calendar-info">
+                <p class="calendar-info-itme">
+                    <span class="flcf66"><i class="icon icon10 icon-arr"></i>点击签到赚积分</span>
+                </p>
+                <p class="flca5">点签到赚积分，赢娶白富美</p>
+            </div>
+        </div>
+<?php
+if(mb_strlen($url) != "xiaohua"){?>
+<!-- 用户发帖、审帖排行 -->
+<ul class="tab tab-rank" id="phnav">
+    <li class="cur" dataid="ph1">投稿周排行榜<i></i></li>
+    <li dataid="ph2">审稿周排行榜<i></i></li>
+</ul>
+<div class="box-rank">
+  <ul class="list-rank" id="ulpaihang">
+    <div class="lbox" id="ph1" style="display:block">
+      <volist name="send_week_user" id="val" key="k">
+      <li>
+        <div class="user-avatar40"><a href="/user/{$val.id}" title="{$val.username}" target="_blank"><i class="icon user-shadow40"></i><img src="{$val.avatar}" height="40" width="40" alt=""></a></div>
+        <div class="list-rank-info">
+          <p><a href="/user/{$val.id}" title="{$val.username}" target="_blank">{$val.username}</a></p>
+          <p><i class="icon icon18 icon-top<php>if($k <=3){echo $k;}</php>">{$k}</i>发布{$val.send_num}个帖子
+          <if condition="(check_follow($user['id'],$val['id']) eq 1)">
+            <a href="javascript:void(0);" data-ajax="follow" data-userid="{$val.id}" class="user-follow user-cancelfollow"><i class="icon icon10 icon-cut"></i>已关注</a>
+            <else/>
+            <a href="javascript:void(0);" data-ajax="follow" data-userid="{$val.id}" class="user-follow"><i class="icon icon10 icon-add-h"></i>关注</a>
+            </if>
+            </p>
+        </div>
+      </li>
+      </volist>
+    </div>
+    <div class="lbox" id="ph2">
+    <volist name="audit_week_user" id="val" key="k">
+      <li>
+        <div class="user-avatar40"><a href="/user/{$val.id}" title="{$val.username}" target="_blank"><i class="icon user-shadow40"></i><img src="{$val.avatar}" height="40" width="40" alt=""></a></div>
+        <div class="list-rank-info">
+          <p><a href="/user/{$val.id}" title="{$val.username}" target="_blank">{$val.username}</a></p>
+          <p><i class="icon icon18 icon-top<php>if($k <=3){echo $k;}</php>">{$k}</i>审核{$val.audit_num}个帖子
+          <if condition="(check_follow($user['id'],$val['id']) eq 1)">
+            <a href="javascript:void(0);" data-ajax="follow" data-userid="{$val.id}" class="user-follow user-cancelfollow"><i class="icon icon10 icon-cut"></i>已关注</a>
+            <else/>
+            <a href="javascript:void(0);" data-ajax="follow" data-userid="{$val.id}" class="user-follow"><i class="icon icon10 icon-add-h"></i>关注</a>
+            </if>
+            </p>
+        </div>
+      </li>
+      </volist>
+    </div>
+  </ul>
+</div>
+        <!--二维码-->
+        <div class="x-right_qr_code">
+            <div class="x-right_qr_code_c">
+                <i class="icon-r-qr">
+                    <img src="{$setting['site_qrcode']}" alt="{$setting["site_name"]}二维码" title="扫二维码 用手机看{$setting["site_name"]}">
+                </i>
+
+                <p class="icon-r-qr-des">扫二维码 用手机看{$setting["site_name"]}</p>
+            </div>
+        </div>
+<?php }?>
+        <div class="sidebar-tag clearfix">
+            <h3>看点</h3>
+            <div class="sidebar-tag-block">
+                <volist name="tags" id="val" offset="0" length="20">
+                    <a href="/tags/{$val.id}_1.html" target="_blank">{$val.name}</a>
+                </volist>
+            </div>
+            <div class="search">
+                <input type="text" id="key" class="search-text" placeholder="你想找点啥 ?" title="你想找点啥 ?" name="key" style="color: rgb(204, 204, 204);">
+                <input type="hidden" name="p" value="1" />
+                <input type="buttom" value="" class="search-submit">
+            </div>
+        </div>
+<script type="text/javascript">seajs.use(['user'], function(user) {user.sign();});</script>

@@ -1,0 +1,82 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox-title">
+                <h5>邮件设置</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="alert alert-warning">
+                    如果您选择了采用服务器内置的 Mail 服务，您不需要填写下面的内容。
+                </div>
+                <form class="form-horizontal" submit-url="{:U('setting/setting')}" method="POST">
+                    <input type="hidden" name="data" value="{$data}" />
+                    <div class="col-md-12">                       
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">邮件发送模式：</label>
+                            <div class="col-sm-2">
+                                <select class="form-control" name='setting["mail_model"]'>
+                                    <option value="1"<if condition="$setting['mail_model'] eq 1"> selected</if>>SMTP发送</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">SMTP服务器：</label>
+                            <div class="col-sm-2">
+                                <input type="text" name='setting["mail_smtp"]' value="{$setting['mail_smtp']}" class="form-control" placeholder="SMTP服务器" required data-msg-required="请输入SMTP服务器">
+                            </div>
+                            <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 例如：smtp.qq.com</span>
+                        </div>
+                        <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">SMTP端口：</label>
+                            <div class="col-sm-2">
+                                <input type="text" name='setting["mail_smtp_port"]' value="{$setting['mail_smtp_port']}" class="form-control" placeholder="SMTP端口" required data-msg-required="请输入SMTP端口">
+                            </div>
+                            <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 例如：25</span>
+                        </div>
+                        <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                         <div class="form-group">
+                            <label class="col-sm-2 control-label">发件人：</label>
+                            <div class="col-sm-2">
+                                <input type="text" name='setting["mail_fromname"]' value="{$setting['mail_fromname']}" class="form-control" placeholder="发件人" required data-msg-required="请输入发件人">
+                            </div>
+                            <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 例如：虾囧网</span>
+                        </div>
+                        <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                         <div class="form-group">
+                            <label class="col-sm-2 control-label">发件人地址：</label>
+                            <div class="col-sm-2">
+                                <input type="text" name='setting["mail_send_address"]' value="{$setting['mail_send_address']}" class="form-control" placeholder="发件人地址" required data-msg-required="请输入发件人地址">
+                            </div>
+                            <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 例如：xiajiong@qq.com</span>
+                        </div>
+                        <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">SMTP帐号：</label>
+                            <div class="col-sm-2">
+                                <input type="text" name='setting["mail_smtp_address"]' value="{$setting['mail_smtp_address']}" class="form-control" placeholder="SMTP帐号" required data-msg-required="请输入SMTP帐号">
+                            </div>
+                            <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 例如：xiajiong</span>
+                        </div>
+                        <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">SMTP密码：</label>
+                            <div class="col-sm-2">
+                                <input type="text" name='setting["mail_smtp_password"]' value="{$setting['mail_smtp_password']}" class="form-control" placeholder="SMTP密码" required data-msg-required="请输入SMTP密码">
+                            </div>
+                            <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 例如：xiajiong888</span>
+                        </div>
+                        <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                        <div class="form-group">
+                            <div class="col-sm-12 col-sm-offset-2">
+                                <button class="btn btn-primary" type="submit" data-form-action="App.submit_form"><i class="fa fa-check"></i> 保 存</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

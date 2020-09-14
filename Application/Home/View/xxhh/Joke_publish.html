@@ -1,0 +1,395 @@
+<include file="Public:header" />
+<!-- 主体内容-开始 -->
+
+<div class="main clearfix publish">
+<div class="left">
+	<if condition="$allow eq 1">
+		<form id="publish-joke">
+			<input type="hidden" name="image" value="" id="image"/>
+			<dl class="publish-title">
+				<dt>笑话标题：</dt>
+				<dd>
+					<input type="text" name="title" value="" placeholder="起个逗逼点的标题" id="title" style="color: rgb(190, 190, 190);" />
+				</dd>
+				<dd class="publish-message message-title"></dd>
+			</dl>
+			<dl class="xhtype">
+				<dt>笑话分类：</dt>
+				<dd>
+					<label><input type="radio" name="type" value="1"> 段子</label>
+					<label><input type="radio" name="type" value="2" checked> 图片</label>
+					<label><input type="radio" name="type" value="3"> GIF动态图</label>
+					<label><input type="radio" name="type" value="4"> 视频</label>
+					<input type="hidden" id="is_video" name="is_video" value="0"/>
+					<strong>请正确选择笑话分类</strong>
+				</dd>
+			</dl>
+
+			<dl class="publish-content">
+
+			<dt id="container" class="news">
+				<span>输入内容：</span>
+				<span id="fileuploader">插入图片</span> <span class="pictips">支持图片格式：jpg,jpeg,png（支持批量多图）</span><span class="giftips" style="display:none">支持动图格式：gif（仅限单张）</span>
+				<span id="show_info" style="display:none">等待……</span>
+			</dt>
+
+			<dd class="news">
+				<script id="content" name="content" type="text/plain" style="width:645px;height:240px;"></script>
+			</dd>
+
+			<dt id="url" style="display:none;">
+				<div>
+					<span>封面图片：</span>
+					<span id="vedio_cover">上传封面</span>
+					<span id="vedio_cover_url" style="display:none"></span>
+				</div>
+				<div id="tab">
+					<ul class="tab_menu">
+			    	<li class="selected" data-type="1">外链视频</li>
+			        <li data-type="2">上传视频</li>
+			    </ul>
+			    <div class="tab_box">
+			    	<div>
+							<span>支持优酷视频观看地址 和 MP4地址。示例：<br><a href="http://v.youku.com/v_show/id_XMTY1NDM0MzA5Ng==.html" target="_blank">1、http://v.youku.com/v_show/id_XMTY1NDM0MzA5Ng==.html</a><br><a href="http://mvvideo1.meitudata.com/5798360b8ae9d4286.mp4" target="_blank">2、http://mvvideo1.meitudata.com/5798360b8ae9d4286.mp4</a></span>
+							<input type="text" name="url" placeholder="视频网站观看地址" id="title" style="color: rgb(190, 190, 190);">
+						</div>
+			      <div class="hide">
+			      			<input type="hidden" name="vedio_type" value="1" id="vedio_type" />
+			      			<input type="hidden" name="vedio_url" value="" id="vedio_url" />
+							<a href="#" class="file_select_btn" id="fileuploadervedio">选择视频上传</a>
+							<p style="text-align: center;font-size: 12px;">上传视频格式：swf、mpg、flv、mp4</p>
+							<p style="text-align: center;font-size: 12px;">温馨提示：请勿上传色情或违法反动视频</p>
+			      </div>
+			    </div>
+				</div>
+			</dt>
+
+			<dd class="publish-message message-content" style="color:red;"></dd>
+			<dd>
+				<div id="post-tags" class="ui-form-item">
+					<label class="ui-label">标签：</label>
+					<p class="ui-message">最多可选3个标签</p>
+				</div>
+				<div id="post-tags-select" class="ui-form-item">
+					<div id="tags-select">
+						<p>
+						<volist name="list" id="v">
+							<label><input value="{$v.id}" type="checkbox" name="tags_id[]" />{$v.name}<i>×</i></label>
+						</volist>
+						</p>
+					</div>
+				</div>
+
+			</dd>
+			<dd class="publish-btn">
+				<div class="sell-joke">
+					<input type="hidden" name="is_package" id="is_package" value="0" />
+					<input type="hidden" name="package_fee" id="package_fee" value="0" />
+					<span class="sell-no" data-id="50"><i></i>我想被包养</span>
+					<span class="sell-btn" data-id="50">50积分</span>
+					<span class="sell-btn" data-id="100">100积分</span>
+					<span class="sell-btn" data-id="200">200积分</span>
+				</div>
+				<button type="button" id="form_publish" />投稿</button>
+			</dd>
+		</dl>
+		</form>
+	<else/>
+		<p>今天的投稿次数已经用完了，请明天再投吧！</p>
+	</if>
+
+
+	<dl class="publish-reward-malicious">
+
+		<dt>奖励规则</dt>
+
+		<dd>
+
+			<p>1、好笑的投稿通过率高，而且更容易获得其它用户的积分打赏哦。<a href="/about/jifen.html" target="_blank">积分新玩法</a></p>
+
+			<p>2、投稿的数量有等级限制，详情请参考<a href="/about/shengji.html" target="_blank">等级规则</a>。</p>
+
+			<p>3、你可以勾选“<i class="s-color-red">我想被包养</i>”，把你的投稿标一个买断价。如果有别的用户看中，他会出价买断，当然，后续这条投稿赚到的打赏就跟您没关系啦。</p>
+
+		</dd>
+	</dl>
+</div>
+<div class="right">
+	<div class="publish-rules">
+		<p>1、{$setting["site_name"]}是快乐分享网站，只要搞笑就可以发！</p>
+		<p>2、千万别投涉政治、色情、暴力、陪聊、广告等内容，小心封号哦。</p>
+		<p>3、我们是个搞笑类网站，非搞笑的投稿就算通过也会被删掉的哦。</p>
+		<p>4、分享你身边的趣事、糗事，鼓励原创，反对转载。</p>
+		<p>5、带水印图片审核是不会通过的，图片越清晰越好。</p>
+		<p>6、不要投重复的内容，会自动过滤掉的。</p>
+		<p>7、最多只允许上传5M的图片。</p>
+		<p class="more"><a href="/about/tougao.html" target="_blank">查看详细规则&gt;&gt;</a></p>
+	</div>
+</div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/plupload/plupload.full.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/qiniu.js"></script>
+<script type="text/javascript">
+<if condition="$setting['file_save_type'] eq 1">
+	seajs.use(['app','ueditor_config','ueditor'],function(App) {
+<else/>
+	seajs.use(['app','ueditor_config','ueditor','uploadfile'],function(App) {
+</if>
+eval(function(p,a,c,k,e,r){e=function(c){return c.toString(36)};if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[0-35-9a-h]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(\'#8-9\').3(\'a[type=checkbox]\').click(function(){b 0=$(this);b 5=$(\'.ui-message\');c(0.d(\'1\')){0.6(\'2\').addClass(\'7\')}e{0.d("1",false);0.6(\'2\').f(\'7\')}c($(\'#8-9\').3(\'2\').3(\'a:1\').length>=4){0.6(\'2\').f(\'7\');0.removeAttr("1");5.g(\'h\',\'red\')}e{5.g(\'h\',\'\')}});',[],18,'_t|checked|label|find||tips|parent|clecked|tags|select|input|var|if|prop|else|removeClass|css|color'.split('|'),0,{}))
+eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[0-7]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('0 $1=$(\'#tab ul li\');$1.click(function(){0 2=$(3).data().2;$(\'#vedio_type\').val(2);$(3).addClass(\'5\').6().removeClass(\'5\');0 4=$1.4(3);$(\'7.tab_box > 7\').eq(4).show().6().hide()})',[],8,'var|tab_li|type|this|index|selected|siblings|div'.split('|'),0,{}))
+		//包养
+		eval(function(p,a,c,k,e,r){e=function(c){return c.toString(36)};if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[2-9a-m]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('a 2=$(\'.2-no\'),4=$(\'.2-d\'),5=$(\'#5\'),6=$(\'#6\');2.e(f(){a 3=$(g);h(3.i(\'2-7\')){3.b(\'2-7\');5.8(0);4.b(\'9\')}else{3.c(\'2-7\');5.8(1);4.j(0).c(\'9\');6.8(4.j(0).k(\'l\'))}});4.e(f(){a 3=$(g),m=3.k(\'l\');h(2.i(\'2-7\')){6.8(m);3.c(\'9\').siblings(\'.2-d\').b(\'9\')}});',[],23,'||sell|self|sellVBtn|is_package|package_fee|yes|val|hover|var|removeClass|addClass|btn|click|function|this|if|hasClass|eq|data|id|num'.split('|'),0,{}))
+		//类别
+		eval(function(p,a,c,k,e,r){e=function(c){return c.toString(36)};if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[5-9a-f]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(\'.xhtype\').find(\'input[type=radio]\').click(function(){var 5=$(this).5(),c=$(\'.c\'),d=$(\'.d\'),8=$(\'.8\'),9=$(\'#9\'),a=$(\'#a\'),b=$(\'#b\');$(\'.message-content\').html(\'\');e(5==4){a.5(1);8.6();9.7()}f e(5==1){b.6();a.5(0);8.7();c.6();d.6();9.6()}f e(5==2){a.5(0);8.7();9.6();b.7();c.7();d.6()}f e(5==3){a.5(0);8.7();9.6();b.7();c.6();d.7()}f{b.7();a.5(0);8.7();9.6()}});',[],16,'|||||val|hide|show|news|url|is_video|fileuploader|pictips|giftips|if|else'.split('|'),0,{}))
+
+		//投稿编辑器
+		var ue = UE.getEditor('content', {
+			toolbars: [],
+		    initialFrameWidth : 640,
+		    initialFrameHeight : 250,
+			autoHeightEnabled : false,
+			pasteplain : true,
+			initialContent : '',
+			autoClearinitialContent : true,
+			enterTag : 'br',
+			serverUrl : '',
+			imageScaleEnabled : false
+		});
+<if condition="$setting['file_save_type'] eq 1">
+		 //引入Plupload 、qiniu.js后
+    var fileuploader = Qiniu.uploader({
+        runtimes: 'html5,flash,html4',    //上传模式,依次退化
+        browse_button: 'fileuploader',       //上传选择的点选按钮，**必需**
+        uptoken_url: '/public/token',            //Ajax请求upToken的Url，**强烈建议设置**（服务端提供）
+         //uptoken : '9GcsZeCchX2kRs8dmce1I6nA4FNSXvPV0gmTnmXH:k8aFF1mmBCK7wzvYm2t46CQ0y5A=:eyJzY29wZSI6InhpYWppb25nIiwiZGVhZGxpbmUiOjE0NDM0MzEwMjR9', //若未指定uptoken_url,则必须指定 uptoken ,uptoken由其他程序生成
+         unique_names: true, // 默认 false，key为文件名。若开启该选项，SDK为自动生成上传成功后的key（文件名）。
+        save_key: true,   // 默认 false。若在服务端生成uptoken的上传策略中指定了 `sava_key`，则开启，SDK会忽略对key的处理
+        domain: 'http://qiniu-plupload.qiniudn.com/',   //bucket 域名，下载资源时用到，**必需**
+        get_new_uptoken: false,  //设置上传文件的时候是否每次都重新获取新的token
+        container: 'container',           //上传区域DOM ID，默认是browser_button的父元素，
+        max_file_size: '100mb',           //最大文件体积限制
+        flash_swf_url: '__PUBLIC__/js/plupload/Moxie.swf',  //引入flash,相对路径
+        max_retries: 3,                   //上传失败最大重试次数
+        dragdrop: true,                   //开启可拖曳上传
+        drop_element: 'container',        //拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
+        chunk_size: '4mb',                //分块上传时，每片的体积
+        auto_start: true,                 //选择文件后自动上传，若关闭需要自己绑定事件触发上传
+        init: {
+        	'BeforeUpload': function(up, files) {
+        //        if(UE.getEditor('content').getContent().indexOf('<img')>-1 || $('#fileuploader').show().html() == '上传中...'){
+								// 	$('#fileuploader').show().html('只能上传一张图片');
+								// 	return false;
+								// }else{
+									//$('#fileuploader').hide();
+									$('#show_info').show().html('上传中...(<b></b>)');
+								//}
+            },
+            'FileUploaded': function(up, file, info) {
+            	var data  = eval("("+info+")");
+            	var image = '{$setting["qiniu_domain"]}'+data.key+'{$setting["qiniu_imgstyle"]}';
+              $('#image').val(image+'{$setting["qiniu_imgstyle"]}');
+            	var imgHtml = '<img src="'+image+'" alt="" val="'+image+'"  />';
+							if(parseInt(ue.getContentLength(true)) == 0){
+								ue.focus();
+							};
+							ue.execCommand('insertHtml', imgHtml);	//插入图片
+							$('#show_info').show().html('上传完成');
+							$('#fileuploader').remove();
+							$('.moxie-shim-html5').remove();
+            },
+            'Error': function(up, err, errTip) {
+            	$('#show_info').html(errTip);
+            },
+	          UploadProgress: function(up, file) {
+	          	$('#show_info').find('b').html('<span>' + file.percent + "%</span>");
+	        	}
+        }
+    });
+	var vedio_cover = Qiniu.uploader({
+        runtimes: 'html5,flash,html4',    //上传模式,依次退化
+        browse_button: 'vedio_cover',       //上传选择的点选按钮，**必需**
+        uptoken_url: '/public/token',            //Ajax请求upToken的Url，**强烈建议设置**（服务端提供）
+         //uptoken : '9GcsZeCchX2kRs8dmce1I6nA4FNSXvPV0gmTnmXH:k8aFF1mmBCK7wzvYm2t46CQ0y5A=:eyJzY29wZSI6InhpYWppb25nIiwiZGVhZGxpbmUiOjE0NDM0MzEwMjR9', //若未指定uptoken_url,则必须指定 uptoken ,uptoken由其他程序生成
+         unique_names: true, // 默认 false，key为文件名。若开启该选项，SDK为自动生成上传成功后的key（文件名）。
+        save_key: true,   // 默认 false。若在服务端生成uptoken的上传策略中指定了 `sava_key`，则开启，SDK会忽略对key的处理
+        domain: 'http://qiniu-plupload.qiniudn.com/',   //bucket 域名，下载资源时用到，**必需**
+        get_new_uptoken: false,  //设置上传文件的时候是否每次都重新获取新的token
+        container: 'container',           //上传区域DOM ID，默认是browser_button的父元素，
+        max_file_size: '100mb',           //最大文件体积限制
+        flash_swf_url: '__PUBLIC__/js/plupload/Moxie.swf',  //引入flash,相对路径
+        max_retries: 3,                   //上传失败最大重试次数
+        dragdrop: true,                   //开启可拖曳上传
+        drop_element: 'container',        //拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
+        chunk_size: '4mb',                //分块上传时，每片的体积
+        auto_start: true,                 //选择文件后自动上传，若关闭需要自己绑定事件触发上传
+        init: {
+        	'BeforeUpload': function(up, files) {
+              $('#vedio_cover').show().html('上传中...(<b></b>)');
+            },
+            'FileUploaded': function(up, file, info) {
+            	var data  = eval("("+info+")");
+            	var image = '{$setting["qiniu_domain"]}'+data.key;
+             	$('#image').val(image+'{$setting["qiniu_imgstyle"]}');
+							$('#vedio_cover').show().html('上传完成');
+							$('#vedio_cover_url').show().html('<img src="'+image+'{$setting["qiniu_imgstyle"]}" width="100" />');
+							$('#vedio_cover').remove();
+            },
+            'Error': function(up, err, errTip) {
+            	$('#vedio_cover').html(errTip);
+            },
+	          UploadProgress: function(up, file) {
+	          	$('#vedio_cover').find('b').html('<span>' + file.percent + "%</span>");
+	        	}
+        }
+    });
+	var fileuploadervedio = Qiniu.uploader({
+        runtimes: 'html5,flash,html4',    //上传模式,依次退化
+        browse_button: 'fileuploadervedio',       //上传选择的点选按钮，**必需**
+        uptoken_url: '/public/token',            //Ajax请求upToken的Url，**强烈建议设置**（服务端提供）
+         //uptoken : '9GcsZeCchX2kRs8dmce1I6nA4FNSXvPV0gmTnmXH:k8aFF1mmBCK7wzvYm2t46CQ0y5A=:eyJzY29wZSI6InhpYWppb25nIiwiZGVhZGxpbmUiOjE0NDM0MzEwMjR9', //若未指定uptoken_url,则必须指定 uptoken ,uptoken由其他程序生成
+         unique_names: true, // 默认 false，key为文件名。若开启该选项，SDK为自动生成上传成功后的key（文件名）。
+        save_key: true,   // 默认 false。若在服务端生成uptoken的上传策略中指定了 `sava_key`，则开启，SDK会忽略对key的处理
+        domain: 'http://qiniu-plupload.qiniudn.com/',   //bucket 域名，下载资源时用到，**必需**
+        get_new_uptoken: false,  //设置上传文件的时候是否每次都重新获取新的token
+        container: 'container',           //上传区域DOM ID，默认是browser_button的父元素，
+        max_file_size: '100mb',           //最大文件体积限制
+        flash_swf_url: '__PUBLIC__/js/plupload/Moxie.swf',  //引入flash,相对路径
+        max_retries: 3,                   //上传失败最大重试次数
+        dragdrop: true,                   //开启可拖曳上传
+        drop_element: 'container',        //拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
+        chunk_size: '4mb',                //分块上传时，每片的体积
+        auto_start: true,                 //选择文件后自动上传，若关闭需要自己绑定事件触发上传
+        init: {
+        	'BeforeUpload': function(up, files) {
+              $('#fileuploadervedio').show().html('上传中...(<b></b>)');
+          },
+          'FileUploaded': function(up, file, info) {
+          	var data  = eval("("+info+")");
+          	var url = '{$setting["qiniu_domain"]}'+data.key;
+          	$('#vedio_url').val(url);
+          	$('#fileuploadervedio').show().html('上传完成');
+          },
+          'Error': function(up, err, errTip) {
+          	$('#fileuploadervedio').show().html(errTip);
+          },
+          UploadProgress: function(up, file) {
+          	$('#fileuploadervedio').find('b').html('<span>' + file.percent + "%</span>");
+        	}
+        }
+    });
+<else/>
+//上传图片
+		$("#fileuploader").uploadFile({
+			url:'/public/uploadimg/',
+			fileName: "Filedata",
+			dragDrop : false,
+			doneStr : '使用',
+			uploadStr:'插入图片',
+			returnType : 'json',
+			showStatusAfterSuccess : false,
+			allowedTypes : 'jpg,jpeg,gif,png,bmp',
+			acceptFiles : "image/",
+			sequential:true,
+			sequentialCount:1,
+			// multiple : false,
+			 showDone : false,
+			 showError : false,
+			 showProgress : true,
+			 showAbort:false,
+			onSubmit:function(files) {
+				// if(UE.getEditor('content').getContent().indexOf('<img')>-1 || $('#fileuploader').show().html() == '上传中...'){
+				// 	$('#fileuploader').show().html('只能上传一张图片');
+				// 	return false;
+				// }else{
+					$('#fileuploader').show().html('上传中...');
+				//}
+			},
+			onSuccess:function(files,data,xhr,pd){
+				if(data.status == 0) {
+					$('#fileuploader').show().html(data.info);
+				}else {
+					var image = data.url.substr(1,data.url.length);
+					var m_image = data.m_url.substr(1,data.m_url.length);
+					$('#image').val(m_image);
+					var imgHtml = '<img src="'+image+'" alt="" val="'+image+'"  />';
+						if(parseInt(ue.getContentLength(true)) == 0){
+							ue.focus();
+						};
+						ue.execCommand('insertHtml', imgHtml);	//插入图片
+						$('#fileuploader').show().html('上传完成');
+						$('#fileuploader').remove();
+					 $('.moxie-shim-html5').remove();
+				}
+			}
+		});
+		//上传视频封面
+		$("#vedio_cover").uploadFile({
+			url:'/public/uploadimg/',
+			fileName: "Filedata",
+			dragDrop : false,
+			doneStr : '使用',
+			uploadStr:'上传封面',
+			returnType : 'json',
+			showStatusAfterSuccess : false,
+			allowedTypes : 'jpg,jpeg,gif,png,bmp',
+			acceptFiles : "image/",
+			multiple : false,
+			showDone : false,
+			showError : false,
+			showProgress : true,
+			showAbort:false,
+			onSubmit:function(files) {
+				$('#vedio_cover').show().html('上传中...');
+			},
+			onSuccess:function(files,data,xhr,pd){
+				if(data.status == 0) {
+					$('#vedio_cover').show().html(data.info);
+				}else {
+					var image = data.url.substr(1,data.url.length);
+					var m_image = data.m_url.substr(1,data.m_url.length);
+					$('#image').val(m_image);
+					$('#vedio_cover').show().html('上传完成');
+					$('#vedio_cover_url').show().html('<img src="'+m_image+'" width="100" />');
+					$('#vedio_cover').remove();
+				}
+			}
+		});
+		//上传视频
+		$("#fileuploadervedio").uploadFile({
+			url:'/public/uploadvedio/',
+			fileName: "Filedata",
+			dragDrop : false,
+			doneStr : '使用',
+			uploadStr:'选择视频上传',
+			returnType : 'json',
+			showStatusAfterSuccess : false,
+			allowedTypes : 'mp4,rmvb',
+			acceptFiles : "image/",
+			multiple : false,
+			showDone : false,
+			showError : false,
+			showProgress : true,
+			showAbort:false,
+			onSubmit:function(files) {
+				$('#fileuploadervedio').show().html('上传中...(<b></b>)');
+			},
+			onSuccess:function(files,data,xhr,pd){
+				if(data.status == 0) {
+					$('#fileuploadervedio').show().html(data.info);
+				}else {
+					var url = data.url.substr(1,data.url.length);
+					$('#vedio_url').val(url);
+					$('#fileuploadervedio').show().html('上传完成');
+				}
+			}
+		});
+</if>
+
+		//ajax
+		eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('f i=$("#e-g"),m=$("#A"),5=$(".l-5"),3=$(".l-3");6=h;m.x(9(){f c=i.t();0(!c.5){5.4("标题不能为空！");7}8{5.4("")}0(C(c.y)){0(c.j==1&&!c.k){3.4("视频不能为空！");7}0(c.j==2&&!c.r){3.4("请上传视频！");7}}8{0(!c.3){3.4("内容不能为空！");7}8{3.4("")}}0(6==h){6=s;d.u({k:"/g/e",v:c,w:9(a){f b=a;0(b.z){d.n(b.o,9(){B.p="/g/e"})}8{6=h;d.n(b.o)}}})}});',39,39,'if|||content|html|title|checkSubmitFlg|return|else|function||||App|publish|var|joke|true|form|vedio_type|url|message|submit|alert|msg|href|URL|vedio_url|false|serializeObject|request|data|success|click|is_video|err|form_publish|location|parseInt'.split('|'),0,{}))
+
+	});
+</script>
+
+<!-- 主体内容-结束 -->
+<include file="Public:footer" />

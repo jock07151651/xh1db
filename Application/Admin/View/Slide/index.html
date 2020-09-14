@@ -1,0 +1,47 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox-title">
+                <h5>幻灯片管理</h5>
+            </div>
+            <div class="ibox-content">
+                <a href="javascript:void(0)" link-url="{:U('slide/add')}"><button class="btn btn-primary btn-sm" type="button"><i class="fa fa-plus-circle"></i> 添加幻灯片</button></a>
+                <a href="javascript:void(0)" link-url="{:U('slidecate/index')}"><button class="btn btn-primary btn-sm" type="button"><i class="fa fa-file-image-o"></i> 分类管理</button></a>
+                <table class="table table-bordered m-t-md">
+                    <thead>
+                        <tr>
+                            <th class="text-center" width="30"><input type="checkbox"></th>
+                            <th class="text-center" width="100">图片</th>
+                            <th>标题</th>
+                            <th>展示文字</th>
+                            <th>描述</th>
+                            <th class="text-center" width="220">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <volist name="slide" id="val">
+                        <tr>
+                            <td class="text-center"><input type="checkbox" name="id[]" value="{$val.id}"></td>
+                            <td class="text-center"><img src="{$val.image}" style="max-width:100px;max-height:50px;"></td>
+                            <td>{$val.name}</td>
+                            <td>{$val.text}</td>
+                            <td>{$val.description}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <a href="javascript:void(0)" link-url="{:U('slide/edit',array('id' => $val['id']))}"><button class="btn btn-white btn-sm" type="button"><em class="fa fa-eye"></em> 修改</button></a>
+                                    <a href="javascript:void(0)" data-url="{:U('slide/delete')}" data-id="{$val['id']}" data-action="App.del"><button class="btn btn-white btn-sm" type="button"><em class="fa fa-trash-o"></em> 删除</button></a>
+                                    <if condition="$val['status'] eq 1">
+                                        <a href="javascript:void(0)" data-url="{:U('slide/status')}" data-action="App.status" data-id="{$val['id']}" data-status="0"><button class="btn btn-white btn-sm" type="button"><em class="fa fa-exclamation-triangle"></em> 隐藏</button></a>
+                                    <else/>
+                                        <a href="javascript:void(0)" data-url="{:U('slide/status')}" data-action="App.status" data-id="{$val['id']}" data-status="1"><button class="btn btn-white btn-sm" type="button"><em class="fa fa-exclamation-triangle"></em> 显示</button></a>
+                                    </if>
+                                </div>
+                            </td>
+                        </tr>
+                        </volist>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

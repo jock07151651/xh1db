@@ -1,0 +1,33 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox-title">
+                <h5>礼品分类添加</h5>
+            </div>
+            <div class="ibox-content">
+                <a href="javascript:void(0)" link-url="{:U('shop/cate')}"><button class="btn btn-primary btn-sm" type="button"><i class="fa fa-plus-circle"></i> 分类管理</button></a>                
+                <form class="form-horizontal" submit-url="{:U('shop/cateedit')}" method="post">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">名称：</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="name" class="form-control" required data-msg-required="请输入名称" value="{$list.name}">
+                            </div>                            
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">排序：</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="sort" class="form-control" required data-msg-required="请输入排序" value="{$list.sort}">
+                            </div>
+                        </div>                       
+                    </div>
+                    <div class="col-sm-12 col-sm-offset-2">
+                        <input type="hidden" name="id" value="{$list.id}">
+                        <button class="btn btn-primary" type="submit" data-form-action="App.submit_form"><i class="fa fa-check"></i> 保 存</button>
+                    </div>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

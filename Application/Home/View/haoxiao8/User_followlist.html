@@ -1,0 +1,66 @@
+<include file="Public:header" />
+
+<!-- 主体内容-开始 -->
+<div class="main clearfix member">
+
+	<include file="User:banner" />
+
+	<div class="left">
+		<ul class="user-nav">
+			<li><a href="/user">消息</a></li>
+              <li><a href="/user/joke">投稿</a></li>
+              <li><a href="/user/review">评论</a></li>
+              <li><a href="/user/followlist" class="hover">关注</a></li>
+              <li><a href="/user/fanslist">粉丝</a></li>
+              <li><a href="/user/msg">私信</a></li>
+              <li><a href="/user/followinfo">好友动态</a></li>
+              <li><a href="/user/gift">我的礼品</a></li>
+              <li><a href="/user/info">个人资料</a></li>
+		</ul>
+		<!--我的关注-开始-->
+		<dl class="other-user clearfix">
+			<if condition="$follow eq NULL">
+				<p style="font-size:20px;text-align:center;margin-top:16px;padding-bottom:20px;">小伙伴新来的，啥也木有。</p>
+			</if>
+			<volist name="follow" id="list">
+				<dd>
+				<a href="/user/{$list.id}" class="go-user-index" target="_blank">
+					<img src="{$list.avatar}" alt="{$list.username}">
+					<p>{$list.username}</p>
+				</a>
+				<a href="javascript:void(0);" title="取消关注" data-ajax="cancelfollow" data-userid="{$list.id}" class="user-follow"><i class="icon icon10 icon-cut"></i>取消关注</a>
+			</dd>
+			</volist>
+		</dl>
+		<!--我的关注-结束-->
+		<div class="comment">
+			<div class="page">{$page}</div>
+		</div>
+	</div>
+
+	<include file="right" />
+
+</div>
+<!-- 主体内容-结束 -->
+
+<include file="Public:footer1" />
+<script type="text/javascript">
+	seajs.use(['user'], function(user) {
+		$('a[data-ajax]').click(function(){
+			var _this = $(this);
+			var uid = _this.attr('data-userid');
+			$.ajax({
+			  type: 'POST',
+			  url: '/ajax/cancelfollow',
+			  data: {uid:uid},
+			  success:function(re){
+					if(re.err){
+						_this.closest('dd').remove();
+					}else{
+						alert(re.msg);
+					}
+				}
+			});
+		})
+	});
+</script>

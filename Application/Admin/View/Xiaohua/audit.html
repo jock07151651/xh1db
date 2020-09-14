@@ -1,0 +1,98 @@
+<style type="text/css">
+    .content img{max-width:200px;max-height: 200px}
+</style>
+<script type="text/javascript" src="http://7xl3wn.com2.z0.glb.qiniucdn.com/socket.io.min.js"></script>
+<script type="text/javascript" src="http://7xjfim.com2.z0.glb.qiniucdn.com/Iva.js"></script>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox-title">
+                <h5>已通过笑话</h5>
+            </div>
+            <div class="ibox-content">
+            <form class="form-horizontal" submit-url="{:U('xiaohua/delete')}">
+                <table class="table table-striped table-bordered table-hover m-t-md">
+                    <thead>
+                        <tr>
+                            <th class="text-center" width="50"><input type="checkbox"></th>
+                            <th class="text-center" width="100">ID</th>
+                            <th class="text-center" width="150">发布人</th>
+                            <th class="text-center">内容</th>
+                            <th class="text-center" width="80">类别</th>
+                            <th class="text-center" width="100">笑点</th>
+                            <th class="text-center" width="80">状态</th>
+                            <th class="text-center" width="80">是否推荐</th>
+                            <th class="text-center" width="150">发布时间</th>
+                            <th class="text-center" width="150">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <volist name="joke_list" id="val" >
+                        <tr>
+                            <td class="text-center"><input type="checkbox" name="id[]" value="{$val.id}"></td>
+                            <td class="text-center">{$val.id}</td>
+                            <td class="text-center"><img src="{$val.user_info.avatar}" width="80"/><br/>{$val.user_info.username}</td>
+                            <if condition="$val['type'] eq 4">
+                            <td  class="text-center content"><b>{$val.title}</b><br/><br/><div id="video-{$val['id']}" style="width:600px;height:340px; margin-left:auto; margin-right:auto"></div></td>
+                            <else/>
+                            <td  class="text-center content"><b>{$val.title}</b><br/><br/>{$val.content|htmlspecialchars_decode}</td>
+                            </if>
+                            <td class="text-center">
+                            <if condition="$val.type eq 1">文字</if>
+                            <if condition="$val.type eq 2">图片</if>
+                            <if condition="$val.type eq 3">动态图</if>
+                            <if condition="$val.type eq 4">视频</if>
+                            <if condition="$val.type eq 0"><font color="red">未分类，请分类</font></if>
+                            </td>
+                            <td class="text-center"><volist id="sval" name="val['tags']">{$sval.name} &nbsp;</volist></td>
+                            <td class="text-center"><if condition="$val.status eq 2">
+               <font style="color:#00ff00">已通过</font>
+            <else/>
+                <font style="color:#cccccc">未通过</font>
+            </if></td>
+                            <td class="text-center" id="commend_{$val.id}"><if condition="$val.commend eq 1">
+               <font style="color:#ff0000">已推荐</font><br/>
+               <a href="javascript:commend({$val.id},0)" class="blue">取消推荐</a>
+            <else/>
+                <a href="javascript:commend({$val.id},1)" class="blue">推荐</a><br/>
+                <font style="color:#cccccc">未推荐</font>
+            </if></td>
+                            <td class="text-center">{$val.created_time|date='Y-m-d H:i:s',###}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                <a href="javascript:void(0)" link-url="{:U('xiaohua/edit',array('id' => $val['id']))}"><button class="btn btn-white btn-sm" type="button"><em class="fa fa-pencil-square"></em> 修改</button></a>
+                                <a href="javascript:void(0)" data-action="App.del" data-url="{:U('xiaohua/delete')}" data-id="{$val['id']}"><button class="btn btn-white btn-sm" type="button"><em class="fa fa-trash-o"></em>删除</button></a>
+                                </div>
+                            </td>
+                        </tr>
+                        </volist>
+                    </tbody>
+                </table>
+                <button class="btn btn-primary btn-sm" type="button" data-form-action="App.del_select"><i class="fa fa-trash-o"></i> 批量删除</button>
+                <div class="pull-right pagination m-t-no">
+                    {$page|str_replace='href','href="javascript:void(0)" link-url',###}
+                </div>
+                <div class="clearfix"></div>
+                </from>
+            </div>
+        </div>
+    </div>
+</div>
+<!--视频播放api-->
+<script type="text/javascript">
+<volist name="joke_list" id="val">
+<if condition="$val['type'] eq 4">var ivaInstance = new Iva('video-{$val.id}',{appkey:'{$setting["site_appkey"]}',live:false,video:'{$val.content}',title:'{$val.title}',cover:'{$val.image}',});</if>
+</volist>
+</script>
+<script type="text/javascript">
+function commend(id,commend) {
+    $.get("{:u('xiaohua/commend')}", { id: id,commend:commend}, function(jsondata){
+        if(commend == 0) {
+            $('#commend_'+id).html('<a href="javascript:commend('+id+',1)" class="blue">推荐</a><br/><font style="color:#cccccc">未推荐</font>');
+        }else {
+            $('#commend_'+id).html('<font style="color:#ff0000">已推荐</font><br/><a href="javascript:commend('+id+',0)" class="blue">取消推荐</a>');
+        }
+
+    },'json');
+}
+</script>

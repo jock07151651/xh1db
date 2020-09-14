@@ -1,0 +1,46 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox-title">
+                <h5>邮件模板</h5>
+            </div>
+            <div class="ibox-content">
+                <a href="javascript:void(0)" link-url="{:U('Level/index')}"><button class="btn btn-primary btn-sm" type="button"><i class="fa fa-plus-circle"></i> 等级管理</button></a>
+                <form class="form-horizontal" submit-url="{:U('Level/edit')}" method="post">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">等级：</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="level" class="form-control" value="{$level_info.level}" required data-msg-required="请输入等级">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">时间：</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="minute" class="form-control" value="{$level_info.minute}" required data-msg-required="请输入时间">                                
+                            </div>
+                            <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> / 分钟</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">投稿数：</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="send_num" class="form-control" required data-msg-required="请输入投稿数" value="{$level_info.send_num}" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">奖励数：</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="award" class="form-control" required data-msg-required="请输入奖励数"  value="{$level_info.award}" >                                
+                            </div>
+                            <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> / {$setting['site_jifen']}</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-sm-offset-2">
+                        <button class="btn btn-primary" type="submit" data-form-action="App.submit_form"><i class="fa fa-check"></i> 保 存</button>
+                    </div>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+<include file="Public:header" />
+
+<!-- 主体内容-开始 -->
+<div class="main clearfix member">
+
+  <include file="User:banner" />
+
+  <div class="left">
+    <ul class="user-nav">
+      <li><a href="/user">消息</a></li>
+      <li><a href="/user/joke">投稿</a></li>
+      <li><a href="/user/review">评论</a></li>
+      <li><a href="/user/followlist">关注</a></li>
+      <li><a href="/user/fanslist" class="hover">粉丝</a></li>
+      <li><a href="/user/msg">私信</a></li>
+      <li><a href="/user/followinfo">好友动态</a></li>
+      <li><a href="/user/gift">我的礼品</a></li>
+      <li><a href="/user/info">个人资料</a></li>
+    </ul>
+
+    <ul class="user-follows-list">
+      <volist name="follow" id="val">
+      <li>
+        <a href="/user/{$val.id}" title="{$val.username}"><img src="{$val.avatar}" alt="{$val.username}"></a>
+        <h3><a href="/user/{$val.id}" title="{$val.username}">{$val.username}</a></h3>
+        <div>
+          <div class="usertools f-r">
+            <if condition="$user['id'] neq $val['id']">
+                <a href="javascript:void(0);" title="私信" data-username="{$val.username}" data-userid="{$val.id}" class="user-dm">私信</a>
+                <if condition="(check_follow($user['id'],$val['id']) eq 1)">
+                <a href="javascript:void(0);" data-ajax="follow" data-userid="{$val.id}" class="user-follow user-cancelfollow"><i class="icon icon10 icon-cut"></i>已关注</a>
+                <else/>
+                <a href="javascript:void(0);" data-ajax="follow" data-userid="{$val.id}" class="user-follow"><i class="icon icon10 icon-add-h"></i>关注</a>
+                </if>
+            </if>
+            </div>
+            投稿：{$val.send_num}&nbsp;&nbsp;|&nbsp;&nbsp;关注：{$val.follows}&nbsp;&nbsp;|&nbsp;&nbsp;粉丝：{$val.fans}
+          </div>
+      </li>
+      </volist>
+    </ul>
+  </div>
+
+  <include file="right" />
+
+</div>
+<!-- 主体内容-结束 -->
+
+<include file="Public:footer1" />

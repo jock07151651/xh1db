@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>{$setting["site_name"]} - 登录</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="__PUBLIC__/admin/css/bootstrap.min.css" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/animate.min.css" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/style.min.css" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/login.min.css" rel="stylesheet">
+    <script type="text/javascript" src="__PUBLIC__/js/sea.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/admin/js/sea_config.js"></script>
+    <script>
+        if(window.top!==window.self){window.top.location=window.location};
+    </script>
+</head>
+
+<body class="signin">
+    <div class="signinpanel">
+        <div class="row">
+            <div class="col-sm-12">
+                <form method="post" class="loginForm" action="{:U('public/login')}">
+                    <h4 class="no-margins">登录</h4>
+                    <input type="text" name="username" class="form-control" placeholder="请输入用户名" required data-msg-required="请输入用户名"/>
+                    <input type="password" name="password" class="form-control" placeholder="请输入密码" required data-msg-required="请输入密码"/>
+                    <div class="form-group code">
+                        <input type="text" name="code" class="form-control" placeholder="请输入验证码"  required data-msg-required="请输入验证码" /><img src="{:U('public/verify')}" title="看不清楚？点击刷新！" onClick="this.src+='&'+Math.random();" >
+                    </div>
+                    <button class="btn btn-success btn-block" type="submit">登录</button>
+                </form>
+            </div>
+        </div>
+        <div class="signup-footer">
+            <div class="text-center">
+                &copy; 2016 All Rights Reserved. Yicms
+            </div>
+        </div>
+    </div>
+<script>
+seajs.use(['app','login'], function(app,login){
+    login.main();
+});
+</script>
+</body>
+</html>

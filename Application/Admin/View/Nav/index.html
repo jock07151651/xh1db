@@ -1,0 +1,51 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox-title">
+                <h5>前台导航管理</h5>
+            </div>
+            <div class="ibox-content">
+                <a href="javascript:void(0)" link-url="{:U('nav/add')}"><button class="btn btn-primary btn-sm" type="button"><i class="fa fa-plus-circle"></i> 添加前台导航</button></a>
+                <form class="form-horizontal m-t-md" submit-url="{:U('nav/delete')}">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th class="text-center" width="30"><input type="checkbox"></th>
+                                <th class="text-center" width="100">ID</th>
+                                <th>导航名称</th>
+                                <th>链接URL</th>
+                                <th class="text-center" width="60">状态</th>
+                                <th class="text-center" width="80">排序</th>
+                                <th class="text-center" width="220">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <volist name="nav" id="val">
+                            <tr>
+                                <td class="text-center"><input type="checkbox" name="id[]" value="{$val.id}"></td>
+                                <td class="text-center">{$val.id}</td>
+                                <td>{$val.name}</td>
+                                <td>{$val.url}</td>
+                                <td class="text-center">{$val['status']?'<span class="text-navy">显示</span>':'<span class="text-danger">隐藏</span>'}</td>
+                                <td class="text-center"><input type="text" value="{$val.list_sort}" name="list_sort" class="form-control text-center" blur-action="App.sort" data-id="{$val.id}" data-url="{:U('nav/sort')}"></td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <a href="javascript:void(0)" link-url="{:U('nav/add',array('pid' => $val['id']))}"><button class="btn btn-white btn-sm" type="button"><i class="fa fa-plus-circle"></i> 新增</button></a>
+                                        <a href="javascript:void(0)" link-url="{:U('nav/edit',array('id' => $val['id']))}"><button class="btn btn-white btn-sm" type="button"><em class="fa fa-edit"></em> 修改</button></a>
+                                        <a href="javascript:void(0)" data-action="App.del" data-url="{:U('nav/delete')}" data-id="{$val.id}"><button class="btn btn-white btn-sm" type="button"><i class="fa fa-trash-o"></i> 删除</button></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            </volist>
+                        </tbody>
+                    </table>
+                    <button class="btn btn-primary btn-sm" type="button" data-form-action="App.del_select"><i class="fa fa-plus-circle"></i> 删除选中</button>
+                    <div class="pull-right pagination m-t-no">
+                        {$page|str_replace='href','href="javascript:void(0)" link-url',###}
+                    </div>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="applicable-device" content="pc" />
+    <meta http-equiv="mobile-agent" content="format=html5;url=http://m.mahua.com/app/download" />
+    <title>客户端下载_{$setting['site_name']}</title>
+    <link type="text/css" href="/app/css/app.css" rel="stylesheet" />
+    <script type="text/javascript" src="/app/js/jquery.js"></script>
+    <script type="text/javascript" src="/app/js/tweenmax.min.js"></script>
+	<script type="text/javascript" src="/app/js/timelinemax.min.js"></script>
+	<script type="text/javascript" src="/app/js/promote.js"></script>
+</head>
+
+<body>
+    <div class="main">
+        <div class="page page1">
+            <div class="top">
+                <div class="wrap">
+                 <a href="{$setting['site_domain']}">{$setting['site_name']}</a>|
+                 <a href="{$setting['site_murl']}" target="_blank">手机访问</a>
+                </div>
+            </div>
+            <div class="wrap p1_wrap">
+                <div class="p1_phone">
+                    <img src="/app/images/p1_phone.png" />
+                </div>
+                <div class="p_logo">
+                    <img src="/app/images/p_logo.png" />
+                </div>
+                <div class="p_btn">
+                    <a href="#" class="app app-ios" target="_blank"><span>iOS版下载</span></a>
+                    <a href="javascript:void(0)" class="app app-android"><span>Android版下载</span></a>
+                    <span class="version-info">版本：V1.0　　　更新：2016.04.26</span>
+                    <ul class="address-more">
+                        <li><a href="xiajiong.apk" target="_blank" onclick="_czc.push(['_trackEvent','app推广页','第一屏下载按钮','本地下载','','']);">本地下载</a>
+                        </li>
+                        <li><a href="javascript:;" onClick="qqapp_dl_apk(this);_czc.push(['_trackEvent','app推广页','第一屏下载按钮','应用宝一键安装','','']);" ex_url="xiajiong.apk" appname="{$setting["site_name"]}" asistanturlid="990576" title="应用宝一键安装"
+                            class="android_install_qq">应用宝一键安装</a>
+                        </li>
+                        <li><a href="zhushou360://type=apk&name={$setting["site_name"]}&refer=203&url=xiajiong.apk" target="_blank" onclick="_czc.push(['_trackEvent','app推广页','第一屏下载按钮','360一键安装','','']);">360一键安装</a>
+                        </li>
+                        <li><a href="xiajiong.apk" name="{$setting["site_name"]}" onClick="_czc.push(['_trackEvent','app推广页','第一屏下载按钮','豌豆荚一键安装','','']);return wdapi_apkdl_m(this, 'source');" title="通过豌豆荚下载" target="_blank">豌豆荚一键安装</a>
+                        </li>
+                    </ul>
+                    <div class="qrcode"><img src="{$setting['site_qrcode']}"><b>二维码扫描下载</b></div>
+                </div>
+                <div class="cloud_1">
+                    <img src="/app/images/cloud_1.png" />
+                </div>
+                <div class="cloud_2">
+                    <img src="/app/images/cloud_2.png" />
+                </div>
+                <div class="ship_bg">
+                    <img src="/app/images/ship_bg.png" />
+                </div>
+            </div>
+            <div class="waves_bg_1"></div>
+            <div class="waves_bg_2"></div>
+        </div>
+        <div class="page page2">
+            <div class="wrap">
+                <div class="p2_content">
+                    <img class="phone_img" src="/app/images/p2_phone.png" />
+                    <img class="p2_icon p2_icon_1" src="/app/images/p2_icon_1.png" />
+                    <img class="p2_icon p2_icon_2" src="/app/images/p2_icon_2.png" />
+                    <img class="p2_icon p2_icon_3" src="/app/images/p2_icon_3.png" />
+                    <img class="p2_icon p2_icon_4" src="/app/images/p2_icon_4.png" />
+                    <img class="p2_icon p2_icon_5" src="/app/images/p2_icon_5.png" />
+                    <img class="p2_audit_bg" src="/app/images/p2_audit_bg.png" />
+                </div>
+            </div>
+        </div>
+        <div class="page page3">
+            <div class="wrap">
+                <div class="p3_content">
+                    <img class="phone_img" src="/app/images/p3_phone.png" />
+                    <div class="p3_icon p3_icon_1"></div>
+                    <div class="p3_icon p3_icon_2"></div>
+                    <div class="p3_icon p3_icon_3"></div>
+                    <div class="p3_icon p3_icon_4"></div>
+                    <div class="p3_icon p3_icon_5"></div>
+                    <img class="p3_icon_6" src="/app/images/p3_icon_5.png" />
+                </div>
+            </div>
+        </div>
+
+        <div class="page page4">
+            <div class="page4_bg"></div>
+            <img class="p4_icon_1" src="/app/images/p4_info_bg.png" />
+            <img class="phone_img" src="/app/images/p4_phone.png" />
+        </div>
+    </div>
+    <div class="footer">
+        <p>Copyright &copy;&nbsp;2016&nbsp;{$setting['site_domain']}.&nbsp;All Rights Reserved.</p>
+        <p>{$setting['site_name']} 版权所有</p>
+    </div>
+</body>
+
+</html>

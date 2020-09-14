@@ -1,0 +1,45 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>URL模式</h5>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t-md" submit-url="{:U('setting/setting')}" method="POST">
+                        <input type="hidden" name="data" value="{$data}" />
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">URL模式：</label>
+                            <div class="col-sm-2">
+                                <select class="form-control" name="setting['url_model']">
+                                    <option value="0"<if condition="$setting['url_model'] eq 0"> selected</if>>普通模式</option>
+                                    <option value="1"<if condition="$setting['url_model'] eq 1"> selected</if>>PATHINFO模式</option>
+                                    <option value="2"<if condition="$setting['url_model'] eq 2"> selected</if>>REWRITE模式</option>
+                                </select>
+                            </div>
+                            <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> * 如果你开启的是REWRITE模式，确保服务器支持REWRITE！</span>
+                        </div>
+                        <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">URL伪静态后缀：</label>
+                            <div class="col-sm-2">
+                                <select name="setting['url_houzhui']" class="form-control">
+                                    <option value="html"<if condition="$setting['url_houzhui'] eq 'html'"> selected</if>>html</option>
+                                    <option value="htm"<if condition="$setting['url_houzhui'] eq 'htm'"> selected</if>>htm</option>
+                                </select>
+                            </div>
+                            <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 普通模式不支持</span>
+                        </div>
+                        <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                        <div class="form-group">
+                            <div class="col-sm-12 col-sm-offset-2">
+                                <button class="btn btn-primary" type="submit" data-form-action="App.submit_form"><i class="fa fa-check"></i> 保 存</button>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

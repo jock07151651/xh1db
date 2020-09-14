@@ -1,0 +1,77 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox-title">
+                <h5>添加导航</h5>
+            </div>
+            <div class="ibox-content">
+                <a href="javascript:void(0)" link-url="{:U('nav/index')}"><button class="btn btn-primary btn-sm" type="button"><i class="fa fa-plus-circle"></i> 导航管理</button></a>
+                <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                <form class="form-horizontal m-t-md" submit-url="{:U('nav/add')}" method="POST">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">导航名称：</label>
+                        <div class="col-sm-2">
+                            <input type="text" name="name" class="form-control" required data-msg-required="请输入导航名称">
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">父级选择：</label>
+                        <div class="col-sm-2">
+                            <select class="form-control" name="pid">
+                                <option value="0" <if condition="$pid eq 0">selected</if>>/</option>
+                                <volist name="nav_list" id="val">
+                                <option value="{$val.id}" <if condition="$pid eq $val['id']">selected</if>>|-{$val.name}</option>
+                                    <volist name="val['subcate']" id="sval">
+                                        <option value="{$sval.id}" <if condition="$pid eq $sval['id']">selected</if>>|----{$sval.name}</option>
+                                    </volist>
+                                </volist>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">标签：</label>
+                        <div class="col-sm-2">
+                            <input type="text" name="alias" class="form-control">
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">链接：</label>
+                        <div class="col-sm-2">
+                            <input type="text" name="url" class="form-control" required data-msg-required="请输入链接">
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">打开方式：</label>
+                        <div class="col-sm-2">
+                            <select class="form-control" name="target">
+                                <option value="_self">原窗口</option>
+                                <option value="_blank">新窗口</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">状态：</label>
+                        <div class="col-sm-2">
+                            <select class="form-control" name="status">
+                                <option value="1">显示</option>
+                                <option value="0">不显示</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                    <div class="form-group">
+                        <div class="col-sm-12 col-sm-offset-2">
+                            <button class="btn btn-primary" type="submit" data-form-action="App.submit_form"><i class="fa fa-check"></i> 保 存</button>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

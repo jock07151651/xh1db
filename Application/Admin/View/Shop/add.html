@@ -1,0 +1,77 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox-title">
+                <h5>添加礼品   </h5>
+            </div>
+            <div class="ibox-content">
+                <a href="javascript:void(0)" link-url="{:U('shop/index')}"><button class="btn btn-primary btn-sm" type="button"><i class="fa fa-plus-circle"></i> 礼品管理</button></a>
+                <form class="form-horizontal" submit-url="{:U('shop/add')}" method="post">
+                    <div class="col-md-12">
+                    <div class="form-group">
+                            <label class="col-sm-2 control-label">分类：</label>
+                            <div class="col-sm-2">
+                                <select class="form-control" name="cate_id">
+                                    <volist name="cate" id="val">
+                                        <option value="{$val.id}">{$val.name}</option>
+                                    </volist>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">名称：</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="title" class="form-control" required data-msg-required="请输入名称">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                        <label class="col-sm-2 control-label">图片：</label>
+                        <div class="col-sm-2">
+                            <div class="input-group uploaderbox">
+                                    <input type="hidden" name="image" value=""/>
+                                    <img src="/Public/admin/image/image.png" width="88" height="75" class="img-responsive">
+                                    <input type="file" id="img"/>
+                                </div>
+                        </div>
+                    </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">{$setting['site_jifen']}：</label>
+                            <div class="col-sm-1">
+                                <input type="text" name="price" class="form-control" required data-msg-required="请输入{$setting['site_jifen']}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">描述：</label>
+                            <div class="col-sm-8">
+                                <script id="description" name="description" type="text/plain" style="width:100%;height:200px;"></script>
+                              </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">状态：</label>
+                            <div class="col-sm-2">
+                                <label class="radio-inline">
+                                    <input type="radio" value="1" name="status" checked>上架
+                                    </label>
+                                <label class="radio-inline">
+                                    <input type="radio" value="0" name="status">下架
+                                    </label>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-sm-12 col-sm-offset-2">
+                        <button class="btn btn-primary" type="submit" data-form-action="App.submit_form"><i class="fa fa-check"></i> 保 存</button>
+                    </div>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+    <script type="text/javascript">
+         seajs.use(['upload','ueditor_config','ueditor_all'], function(upload){
+                UE.delEditor("description");
+                var ue = UE.getEditor('description');
+                upload.uploadify('#img','shop','image');
+          });
+    </script>

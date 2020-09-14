@@ -1,0 +1,52 @@
+<div class="user-banner">
+	<a href="javascript:void(0)" id="editImg">
+		<img src="{$user.avatar}" alt="{$user.username}">
+		<p class="bg"></p>
+		<p>修改头像</p>
+		<i></i>
+	</a>
+    <div class="user-banner-uname"><span>{$user.username}</span></div>
+    <div class="user-banner-stats clear">
+    	<div class="user-relation-stats">
+        	<a href="/user/followlist">关注({$user.follows})</a>
+            <a href="/user/fanslist">粉丝({$user.fans})</a>
+        </div>
+        <div class="level">
+			<span class="bg"></span><span class="red" style="width:{$user['online_time']/$next_level['minute']*100}%;"></span><p></p>
+			<i class="level_text text_lv{$user.level} level-left">LV{$user.level}</i>
+			<i class="level_time">{$user.online_time}/{$next_level.minute}分钟</i>
+			<i class="level_text text_lv{$user['level']+1} level-right">LV{$user['level']+1}</i>
+		</div>
+        <div class="user-counter">
+            <table>
+                <tbody>
+                    <tr>
+                      <td>
+                        <a href="/user/joke">
+                          <span class="user-counter-value">{$user.send_num}</span><br>
+                          <span class="user-counter-key">投稿</span>
+                        </a>
+                      </td>
+                      <td>
+                        <span class="user-counter-value">{$user.audit_suc_num}</span><br>
+                        <span class="user-counter-key">审稿</span>
+                      </td>
+                      <td>
+                        <span class="user-counter-value">{$user.money}</span><br>
+                        <span class="user-counter-key">积分</span>
+                      </td>
+                      <td>
+                        <span class="user-counter-value">{$good_num}</span><br>
+                        <span class="user-counter-key">被赞</span>
+                      </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+	seajs.use(['user'], function(user) {
+		user.setPortrait();
+	});
+</script>

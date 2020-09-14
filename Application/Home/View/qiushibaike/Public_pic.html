@@ -1,0 +1,22 @@
+<div class="sidebar-hot clearfix">
+    <h3>精彩图片</h3>
+    <ul>
+        <volist name="pic" id="val" offset="0" length="4">
+        <li class="item">
+            <a href="/xiaohua/{$val.id}.html" title="{$val.title}" rel="nofollow"><span><img src="{$val.image}" alt="{$val.title}"></span> </a>
+            <a href="/xiaohua/{$val.id}.html" title="{$val.title}"><p>{$val.title}</p></a>
+        </li>
+        </volist>
+    </ul>
+</div>
+<div class="sidebar-hot clearfix">
+    <h3>精彩动图</h3>
+    <ul>
+        <volist name="gif" id="val" offset="0" length="4">
+        <li class="item">
+            <a href="/xiaohua/{$val.id}.html" title="{$val.title}" rel="nofollow"><span><img src="{$val.image}" alt="{$val.title}"></span> </a>
+            <a href="/xiaohua/{$val.id}.html" title="{$val.title}"><p>{$val.title}</p></a>
+        </li>
+        </volist>
+    </ul>
+</div>

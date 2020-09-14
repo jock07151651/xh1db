@@ -1,0 +1,66 @@
+<!-- 底部-开始 -->
+<div class="foot">
+	<div class="links-block clearfix">
+		<div class="links-list-block clearfix">
+			<div class="likes-title">友情链接：</div>
+			<div class="links" id="links_list">
+				<div class="likes-list">
+					<volist name="flink" id="val">
+						<a target="_blank" href="{$val.url}">{$val.name}</a>
+					</volist>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="foot-nav clearfix">
+		<div class="foot-nav-col">
+        	<h3>关于{$setting["site_name"]}</h3>
+			<ul>
+				<li><a href="/about/jianjie.html" target="_blank">{$setting["site_name"]}简介</a></li>
+                <li><a href="/about/gonggao.html" target="_blank">{$setting["site_name"]}公告</a></li>
+				<li><a href="/about/shengming.html" target="_blank">免责声明</a></li>
+                <li><a href="/about/feedback.html" target="_blank" class="a-color-red">反馈意见</a></li>
+			</ul>
+        </div>
+        <div class="foot-nav-col">
+        	<h3>互动规则</h3>
+			<ul>
+				<li><a href="/about/tougao.html" target="_blank">投稿规则</a></li>
+                <li><a href="/about/shengao.html" target="_blank" class="a-color-red">审稿规则</a></li>
+				<li><a href="/about/shengji.html" target="_blank">升级规则</a></li>
+                <li><a href="/about/jifen.html" target="_blank">积分规则</a></li>
+			</ul>
+         </div>
+        <div class="foot-nav-col">
+        	<h3>{$setting["site_name"]}合作</h3>
+			<ul>
+				<li>{$setting["site_name"]}粉丝QQ群:<i></i>156322789</li>
+				<li>合作：50042748@qq.com</li>
+			</ul>
+        </div>
+        <div class="foot-nav-col">
+        	<h3>{$setting["site_name"]}微信公众平台</h3>
+			<ul>
+				<li><img src="{$setting['site_qrcode']}" width="110" height="110"></li>
+			</ul>
+		</div>
+    </div>
+    <div class="foot-copyrights">
+        <p>{$setting["site_copyright"]}　ICP备：{$setting["site_icp"]}　{$setting.site_tongji_code|htmlspecialchars_decode}</p>
+    </div>
+	</div>
+</div>
+<!-- 底部-结束 -->
+
+<!--回到顶部-开始-->
+<div class="return-top" id="j-return-top">
+	<div class="return-code">
+		<img class="qrcode" src="{$setting['site_qrcode']}">
+		<img class="arrow" src="/Public/index/pengfu/images/reutrn-code-bg.png">
+	</div>
+	<div class="return-btn"></div>
+</div>
+<!--回到顶部-结束-->
+{$adv['pc_fumeiti']}{$adv['pc_duilian']}
+</body>
+</html>

@@ -1,0 +1,48 @@
+<include file="Public:header" />
+
+<!-- 主体内容-开始 -->
+<div class="main clearfix" style="position:relative;">
+	<include file="User:userBanner" />
+	<div class="left" id="j-main-list" style="width:700px;float:left;">
+    	<ul class="user-nav">
+        	<li><a href="/user/{$user_info.id}">投稿 {$user_info.send_num}</a></li>
+            <li><a href="/user/follows/{$user_info.id}">关注 {$user_info.follows}</a></li>
+            <li><a class="hover" href="/user/fans/{$user_info.id}">粉丝 {$user_info.fans}</a></li>
+        </ul>
+    <if condition="$follow eq NULL">
+      <dl class="main-list" style="height:100%;text-align:center;">
+        <p style="font-size:20px;text-align:center;margin-top:16px;padding-bottom:20px;">很遗憾，你还没有粉丝。</p>
+      </dl>
+    </if>
+		<ul class="user-follows-list">
+      <volist name="follow" id="val">
+      <li>
+      	<a href="/user/{$val.id}" title="{$val.username}"><img src="{$val.avatar}" alt="{$val.username}"></a>
+        <h3><a href="/user/{$val.id}" title="{$val.username}">{$val.username}</a></h3>
+        <div>
+          <if condition="$user neq NULL">
+          <div class="usertools f-r">
+            <if condition="$user['id'] neq $val['id']">
+                <a href="javascript:void(0);" title="私信" data-username="{$val.username}" data-userid="{$val.id}" class="user-dm">私信</a>
+                <if condition="(check_follow($user['id'],$val['id']) eq 1)">
+                <a href="javascript:void(0);" data-ajax="follow" data-userid="{$val.id}" class="user-follow user-cancelfollow"><i class="icon icon10 icon-cut"></i>已关注</a>
+                <else/>
+                <a href="javascript:void(0);" data-ajax="follow" data-userid="{$val.id}" class="user-follow"><i class="icon icon10 icon-add-h"></i>关注</a>
+                </if>
+            </if>
+            </div>
+            </if>
+          	投稿：{$val.send_num}&nbsp;&nbsp;|&nbsp;&nbsp;关注：{$val.follows}&nbsp;&nbsp;|&nbsp;&nbsp;粉丝：{$val.fans}
+          </div>
+      </li>
+      </volist>
+    </ul>
+	</div>
+
+	<include file="User:userRight" />
+
+
+</div>
+<!-- 主体内容-结束 -->
+
+<include file="Public:footer1" />

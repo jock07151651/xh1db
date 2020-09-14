@@ -1,0 +1,59 @@
+        <!--投稿-->
+        <div class="j-sent">
+            <a href="/joke/publish" class="left icon-contribute">
+                <i class="icon icon-publish"></i>投稿
+            </a>
+        </div>
+        <!--审稿-->
+        <div class="j-sent">
+            <a href="/joke/audit" class="left icon-contribute">
+                <i class="icon icon-audit"></i>审稿
+            </a>
+        </div>
+        <!--已签到-->
+        <div class="calendar calendar-out clearfix" id="ysign-box" <if condition="$is_sign neq 1">style="display:none"</if>>
+            <a href="javascript:void(0);" class="calendar-left">
+                <i class="icon icon24 icon-diary"></i>签到
+            </a>
+            <div class="calendar-info">
+                <p class="calendar-info-itme flca5">本次获得30分</p>
+                <p class="flca5">恭喜你离赢娶白富美又近了一步</p>
+            </div>
+        </div>
+
+        <!--未签到-->
+        <div class="calendar calendar-in" id="nosign-box" <if condition="$is_sign eq 1">style="display:none"<else/>style="display:block"</if>>
+            <a href="javascript:void(0);" id="user-sign" class="calendar-left">
+                <i class="icon icon24 icon-diary-s"></i>签到
+            </a>
+            <div class="calendar-info">
+                <p class="calendar-info-itme">
+                    <span class="flcf66"><i class="icon icon10 icon-arr"></i>点击签到赚积分</span>
+                </p>
+                <p class="flca5">点签到赚积分，赢娶白富美</p>
+            </div>
+        </div>
+        <!--二维码-->
+        <div class="x-right_qr_code">
+            <div class="x-right_qr_code_c">
+                <i class="icon-r-qr">
+                    <img src="{$setting['site_qrcode']}" alt="{$setting["site_name"]}二维码" title="扫二维码 用手机看{$setting["site_name"]}">
+                </i>
+
+                <p class="icon-r-qr-des">扫二维码 用手机看{$setting["site_name"]}</p>
+            </div>
+        </div>
+        <div class="sidebar-tag clearfix">
+            <h3>看点</h3>
+            <div class="sidebar-tag-block">
+                <volist name="tags" id="val" offset="0" length="20">
+                    <a href="/tags/{$val.id}_1.html" target="_blank">{$val.name}</a>
+                </volist>
+            </div>
+            <div class="search">
+                <input type="text" id="key" class="search-text" placeholder="你想找点啥 ?" title="你想找点啥 ?" name="key" style="color: rgb(204, 204, 204);">
+                <input type="hidden" name="p" value="1" />
+                <input type="buttom" value="" class="search-submit">
+            </div>
+        </div>
+<script type="text/javascript">seajs.use(['user'], function(user) {user.sign();});</script>

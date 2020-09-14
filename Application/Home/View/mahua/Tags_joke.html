@@ -1,0 +1,93 @@
+<ul class="joke-list">
+<volist name="user_joke" id="jd">	
+<li data-j-id="{$jd.id}">
+	<div class="u-info">
+		<a class="j-u-avatar" href="/user/{$jd.user_info.id}"><img src="{$jd.user_info.avatar}"></a>
+		<p class="j-u-name"><a href="/user/{$jd.user_info.id}">{$jd.user_info.username}</a></p>
+		<p class="j-title"><a href="/xiaohua/{$jd.id}.html">{$jd.title}</a></p>
+	</div>
+	<div class="j-content<php>if($jd['type'] == 3){echo ' gif-play-btn';}</php>" onclick="javascript:location.href='/xiaohua/{$jd['id']}.html'">
+		<php>
+			if($jd['type'] == 3) {
+				$image = str_replace('m_','',$jd['image']);
+				$content = $jd['content'];
+				$content = str_replace('src="'.$image.'"','src="'.$jd['image'].'" _src="__PUBLIC__/wap/images/loading.gif" class="lazyload"',$content);
+				echo $content;
+				echo '<span>播放GIF</span>';
+			}else if($jd['type'] == 2){
+				$image = $jd['image'];
+				$content = $jd['content'];
+				$content = str_replace('src="'.$image.'"','src="'.$jd['image'].'" _src="__PUBLIC__/wap/images/loading.gif" class="lazyload"',$content);
+				echo $content;
+			}else if($jd['type'] == 4){
+				preg_match('#sid/(.*?)/v\.swf#i',$jd['content'],$matches);
+			</php>
+				<div id="player<php>echo $jd['id'];</php>" style="width:100%;height:5rem"></div>
+			<php>
+			}else{
+				echo $jd['content'];
+			}
+		</php>
+	</div>
+	<div class="j-access-score">
+		<if condition="($jd.record eq NULL) OR ($jd['record']['award'] eq 0)">
+			<!-- 打赏 -->
+			<a href="javascript:void(0)" rel="nofollow" class="j-maryane" total-score="0" user-score="{$jd.award_num}">打赏</a>
+		</if>
+		<if condition="($jd.record neq NULL) AND ($jd['record']['award'] gt 0)">
+			<a class="rewarded" href="javascript:void(0)">已打赏</a>
+		</if>
+		<if condition="($jd.is_package eq 1) AND ($jd.package_user_id eq 0)">
+			<!-- 包养 -->
+			<a href="javascript:void(0)" rel="nofollow" class="j-kept" data-id="{$jd.id}" data-fee="{$jd.package_fee}">包养</a>
+		</if>
+
+		<if condition="($jd.is_package eq 1) AND ($jd.package_user_id gt 0)">
+		<!-- 已被包养 -->
+			<div class="kepted">
+				<a href="/user/{$jd['record']['package_info']['id']}">{$jd['record']['package_info']['username']}</a>
+				<span>包养了Ta</span>
+			</div>
+		</if>
+	</div>
+	<div class="j-vote">
+		<a href="javascript:void(0)" rel="nofollow" class="<if condition="($jd.record neq NULL) AND ($jd['record']['type'] eq 'good')">j-gooded<else/>j-good</if>" title="顶"><i>{$jd.good_num}</i></a>
+		<a href="javascript:void(0)" rel="nofollow" class="<if condition="($jd.record neq NULL) AND ($jd['record']['type'] eq 'bad')">j-baded<else/>j-bad</if>" title="踩"><i>{$jd.bad_num}</i></a>
+		<a href="/xiaohua/{$jd.id}.html" class="j-comment" title="评论"><i>{$jd.id|review}</i></a>
+		<a href="javascript:void(0)" rel="nofollow" class="j-share" title="分享" data-get="obj_id={$jd.id}&title={$jd.title}"><i></i></a>
+	</div>
+</li>
+</volist>
+</ul>
+<div class="j-page">
+<php>
+	$id = $_GET['id'];
+	$p = $_GET['p'];
+	if($p == '' || $p == 1){
+		$p = 1;
+	}
+	$count = count($user_joke);
+	if($count >= 10){
+		$p = $p + 1;
+		echo '<a href="/tags/'.$id.'_'.$p.'.html" class="joke j-page-next-a">下一页</a>';
+	}
+</php>
+</div>
+<script type="text/javascript" src="http://player.youku.com/jsapi">
+function showVideo(domid,vid){
+	player = new YKU.Player(domid,{
+		client_id: 'a01acb36d4e70bc0',
+		vid: vid,
+		show_related: false
+	});
+}
+<volist name="user_joke" id="jd">
+<php>if($jd['type'] == 4){
+	preg_match('#sid/(.*?)/v\.swf#i',$jd['content'],$matches);
+</php>
+	showVideo('player<php>echo $jd['id'];</php>','<php>echo $matches[1];</php>');
+<php>
+}
+</php>
+</volist>
+</script>

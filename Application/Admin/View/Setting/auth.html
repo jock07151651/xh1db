@@ -1,0 +1,163 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>第三方登录接口</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <div class="tabbable" id="tabs-361789">
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#panel-w-qq" data-toggle="tab">电脑QQ互联登录设置</a></li>
+                                    <li><a href="#panel-m-qq" data-toggle="tab">移动QQ互联登录设置</a></li>
+                                    <li><a href="#panel-w-wb" data-toggle="tab">电脑新浪微博登录设置</a></li>
+                                    <li><a href="#panel-m-wb" data-toggle="tab">移动新浪微博登录设置</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="panel-w-qq">
+                                        <div class="ibox-content">
+                                            <form class="form-horizontal" submit-url="{:U('setting/setting')}" method="POST">
+                                                <input type="hidden" name="data" value="{$data}" />
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">APPkey：</label>
+                                                    <div class="col-sm-2">
+                                                        <input type="text" name='setting["qq_app_key"]' value="{$setting['qq_app_key']}" class="form-control" required data-msg-required="请输入APPkey">
+                                                    </div>
+                                                </div>
+                                                <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">APPsecret：</label>
+                                                    <div class="col-sm-2">
+                                                        <input type="text" name='setting["qq_app_secret"]' value="{$setting['qq_app_secret']}" class="form-control" required data-msg-required="请输入APPsecret">
+                                                    </div>
+                                                </div>
+                                                <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">验证代码：</label>
+                                                    <div class="col-sm-4">
+                                                        <input type="text" name='setting["qq_code"]' value="{$setting['qq_code']}" class="form-control" required data-msg-required="请输入验证代码">
+                                                    </div>
+                                                </div>
+                                                <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                                                <div class="form-group">
+                                                    <div class="col-sm-12 col-sm-offset-2">
+                                                        <button class="btn btn-primary" type="submit" data-form-action="App.submit_form"><i class="fa fa-check"></i> 保 存</button>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="panel-m-qq">
+                                        <div class="ibox-content">
+                                            <form class="form-horizontal" submit-url="{:U('setting/setting')}" method="POST">
+                                                <input type="hidden" name="data" value="{$data}" />
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">APPkey：</label>
+                                                    <div class="col-sm-2">
+                                                        <input type="text" name='setting["mqq_app_key"]' value="{$setting['mqq_app_key']}" class="form-control" required data-msg-required="请输入APPkey">
+                                                    </div>
+                                                </div>
+                                                <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">APPsecret：</label>
+                                                    <div class="col-sm-2">
+                                                        <input type="text" name='setting["mqq_app_secret"]' value="{$setting['mqq_app_secret']}" class="form-control" required data-msg-required="请输入APPsecret">
+                                                    </div>
+                                                </div>
+                                                <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">验证代码：</label>
+                                                    <div class="col-sm-4">
+                                                        <input type="text" name='setting["mqq_code"]' value="{$setting['mqq_code']}" class="form-control" required data-msg-required="请输入验证代码">
+                                                    </div>
+                                                </div>
+                                                <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                                                <div class="form-group">
+                                                    <div class="col-sm-12 col-sm-offset-2">
+                                                        <button class="btn btn-primary" type="submit" data-form-action="App.submit_form"><i class="fa fa-check"></i> 保 存</button>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="panel-w-wb">
+                                        <div class="ibox-content">
+                                            <form class="form-horizontal" submit-url="{:U('setting/setting')}" method="POST">
+                                                <input type="hidden" name="data" value="{$data}" />
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">APPkey：</label>
+                                                    <div class="col-sm-2">
+                                                        <input type="text" name='setting["sina_app_key"]' value="{$setting['sina_app_key']}" class="form-control" required data-msg-required="请输入APPkey">
+                                                    </div>
+                                                </div>
+                                                <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">APPsecret：</label>
+                                                    <div class="col-sm-2">
+                                                        <input type="text" name='setting["sina_app_secret"]' value="{$setting['sina_app_secret']}" class="form-control" required data-msg-required="请输入APPsecret">
+                                                    </div>
+                                                </div>
+                                                <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">验证代码：</label>
+                                                    <div class="col-sm-4">
+                                                        <input type="text" name='setting["sina_code"]' value="{$setting['sina_code']}" class="form-control" required data-msg-required="请输入验证代码">
+                                                    </div>
+                                                </div>
+                                                <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                                                <div class="form-group">
+                                                    <div class="col-sm-12 col-sm-offset-2">
+                                                        <button class="btn btn-primary" type="submit" data-form-action="App.submit_form"><i class="fa fa-check"></i> 保 存</button>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="panel-m-wb">
+                                        <div class="ibox-content">
+                                            <form class="form-horizontal" submit-url="{:U('setting/setting')}" method="POST">
+                                                <input type="hidden" name="data" value="{$data}" />
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">APPkey：</label>
+                                                    <div class="col-sm-2">
+                                                        <input type="text" name='setting["msina_app_key"]' value="{$setting['msina_app_key']}" class="form-control" required data-msg-required="请输入APPkey">
+                                                    </div>
+                                                </div>
+                                                <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">APPsecret：</label>
+                                                    <div class="col-sm-2">
+                                                        <input type="text" name='setting["msina_app_secret"]' value="{$setting['msina_app_secret']}" class="form-control" required data-msg-required="请输入APPsecret">
+                                                    </div>
+                                                </div>
+                                                <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">验证代码：</label>
+                                                    <div class="col-sm-4">
+                                                        <input type="text" name='setting["msina_code"]' value="{$setting['msina_code']}" class="form-control" required data-msg-required="请输入验证代码">
+                                                    </div>
+                                                </div>
+                                                <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                                                <div class="form-group">
+                                                    <div class="col-sm-12 col-sm-offset-2">
+                                                        <button class="btn btn-primary" type="submit" data-form-action="App.submit_form"><i class="fa fa-check"></i> 保 存</button>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+<include file="Public:tags" />
+<!-- 用户发帖、审帖排行 -->
+<ul class="tab tab-rank" id="phnav">
+    <li class="cur" dataid="ph1">投稿周排行榜<i></i></li>
+    <li dataid="ph2">审稿周排行榜<i></i></li>
+</ul>
+<div class="box-rank">
+  <ul class="list-rank" id="ulpaihang">
+    <div class="lbox" id="ph1" style="display:block">
+      <volist name="send_week_user" id="val" key="k">
+      <li>
+        <div class="user-avatar40"><a href="/user/{$val.id}" title="{$val.username}" target="_blank"><i class="icon user-shadow40"></i><img src="{$val.avatar}" height="40" width="40" alt=""></a></div>
+        <div class="list-rank-info">
+          <p><a href="/user/{$val.id}" title="{$val.username}" target="_blank">{$val.username}</a></p>
+          <p><i class="icon icon18 icon-top<php>if($k <=3){echo $k;}</php>">{$k}</i>发布{$val.send_num}个帖子
+          <if condition="(check_follow($user['id'],$val['id']) eq 1)">
+            <a href="javascript:void(0);" data-ajax="follow" data-userid="{$val.id}" class="user-follow user-cancelfollow"><i class="icon icon10 icon-cut"></i>已关注</a>
+            <else/>
+            <a href="javascript:void(0);" data-ajax="follow" data-userid="{$val.id}" class="user-follow"><i class="icon icon10 icon-add-h"></i>关注</a>
+            </if>
+            </p>
+        </div>
+      </li>
+      </volist>
+    </div>
+    <div class="lbox" id="ph2">
+    <volist name="audit_week_user" id="val" key="k">
+      <li>
+        <div class="user-avatar40"><a href="/user/{$val.id}" title="{$val.username}" target="_blank"><i class="icon user-shadow40"></i><img src="{$val.avatar}" height="40" width="40" alt=""></a></div>
+        <div class="list-rank-info">
+          <p><a href="/user/{$val.id}" title="{$val.username}" target="_blank">{$val.username}</a></p>
+          <p><i class="icon icon18 icon-top<php>if($k <=3){echo $k;}</php>">{$k}</i>审核{$val.audit_num}个帖子
+          <if condition="(check_follow($user['id'],$val['id']) eq 1)">
+            <a href="javascript:void(0);" data-ajax="follow" data-userid="{$val.id}" class="user-follow user-cancelfollow"><i class="icon icon10 icon-cut"></i>已关注</a>
+            <else/>
+            <a href="javascript:void(0);" data-ajax="follow" data-userid="{$val.id}" class="user-follow"><i class="icon icon10 icon-add-h"></i>关注</a>
+            </if>
+            </p>
+        </div>
+      </li>
+      </volist>
+    </div>
+  </ul>
+</div>
+<include file="Public:pic" />
+<include file="Public:text" />
+<include file="Public:app" />

@@ -1,0 +1,57 @@
+<include file="Public:header" />
+
+<!-- 主体内容-开始 -->
+<div class="main clearfix member">
+
+	<include file="User:banner" />
+
+	<div class="col1" style="background:#fff;">
+		<ul class="user-nav">
+			<li><a href="/user">消息</a></li>
+		    <li><a href="/user/joke">投稿</a></li>
+		    <li><a href="/user/review" >评论</a></li>
+		    <li><a href="/user/followlist">关注</a></li>
+		    <li><a href="/user/fanslist">粉丝</a></li>
+		    <li><a href="/user/msg"class="hover">私信</a></li>
+		    <li><a href="/user/followinfo">好友动态</a></li>
+		    <li><a href="/user/gift">我的礼品</a></li>
+		    <li><a href="/user/info">个人资料</a></li>
+		</ul>
+		<!--我的私信-开始-->
+		<ul class="private-msg">
+			<if condition="$msg eq NULL">
+				<p style="font-size:20px;text-align:center;margin-top:16px;padding-bottom:20px;">小伙伴新来的，啥也木有。</p>
+			</if>
+			<volist name="msg" id="list">
+			<li>
+				<a href="/user/{$list.send_uid}" class="private-msg-avatar effect-rotate link-gray">
+					<img src="{$list.user.avatar}" alt="{$list.user.username}">
+				</a>
+				<div class="private-msg-con">
+					<div class="private-msg-title">
+							<span class="fl link-gray">来自<a href="/user/{$list.send_uid}" class="link-blue">{$list.user.username}</a>的私信
+									<i class="private-msg-new"></i>
+							</span>
+							<span class="fr"></span>
+		      </div>
+		      <div class="private-msg-dialog">
+		      	<span class="icon-uicon-dialog-left"></span>
+		      	<p>{$list.content}</p>
+		      	<span class="private-msg-time">{$list['created_time']|date='Y-m-d H:i:s',###}</span>
+		      </div>
+		    </div>
+		  </li>
+		  </volist>
+		</ul>
+		<!--我的私信-结束-->
+		<div class="comment">
+			<div class="page">{$page}</div>
+		</div>
+	</div>
+	<div class="col2">
+	<include file="right" />
+	</div>
+</div>
+<!-- 主体内容-结束 -->
+
+<include file="Public:footer1" />

@@ -1,0 +1,43 @@
+<include file="Public:header" />
+
+<!-- 主体内容-开始 -->
+
+<div class="main clearfix">
+
+	<div class="main-left fl" id="j-main-list">
+		<div class="main-nav clearfix" id="j-main-nav">
+			<ul class="clearfix fl">
+				<li><a href="/">最 新</a></li>
+				<li><a class="action" href="/hot">8小时热门</a></li>
+				<li><a href="/hot/week">7天热门</a></li>
+				<li><a href="/hot/month">30天热门</a></li>				
+			</ul>
+			<p class="notice"><a href="/about/jifen.html"><b>公告：</b>搞笑笔记最新积分规则</a></p>
+		</div>
+
+		<div class="side-nav" id="j-side-nav">
+			<ul class="clearfix">
+				<li class="cur"><a href="/">首页</a></li>
+				<li><a href="/text">段子</a></li>
+				<li><a href="/pic">趣图</a></li>
+				<li><a href="/gif">动图</a></li>
+				<li><a href="/video">视频</a></li>
+			</ul>
+		</div>
+		<include file="Public:joke" />
+		<div class="comment">
+		<div class="page">
+			{$page}
+		</div>
+		</div>
+	</div>
+	<include file="Index:right" />
+</div>
+<!-- 主体内容-结束 -->
+<include file="Public:footer" />
+<script type="text/javascript">
+	seajs.use(['user'], function(user) {
+		user.returnTop();
+		user.sideNav();	
+	});
+</script>

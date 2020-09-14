@@ -1,0 +1,23 @@
+<include file="Public:header" />
+<!-- 主体内容-开始 -->
+<div class="main clearfix">
+	<div class="mahua sarch-results">
+			为您找到与“<span>{$key}</span>”相关的笑话 {$count}条
+		</div>
+	<div class="main-left fl" id="j-main-list">
+		<include file="Public:joke" />
+		<div class="page">
+			{$page}
+		</div>
+
+	</div>
+
+	<div class="main-right fr">
+		<include file="Public:user" />
+		<include file="Public:tags" />
+		<include file="Public:app" />
+	</div>
+
+</div>
+<!-- 主体内容-结束 -->
+<include file="Public:footer" />

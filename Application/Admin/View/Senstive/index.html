@@ -1,0 +1,53 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox-title">
+                <h5>敏感词管理</h5>
+            </div>
+            <div class="ibox-content">
+                <a href="javascript:void(0)" link-url="{:U('senstive/add')}"><button class="btn btn-primary btn-sm" type="button"><i class="fa fa-plus-circle"></i> 添加敏感词</button></a>
+                <form method="get" submit-url="{:U('senstive/index')}" class="pull-right mail-search m-b-md">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="search" placeholder="搜索敏感词">
+                        <div class="input-group-btn">
+                            <button class="btn btn-md btn-primary" type="button" data-form-action="App.search_form">搜索</button>
+                        </div>
+                    </div>
+                </form>
+                <form method="get" submit-url="{:U('senstive/edit')}" method="POST">
+                    <table class="table table-striped table-bordered table-hover m-t-md">
+                        <thead>
+                            <tr>
+                                <th class="text-center"><input type="checkbox"></th>
+                                <th class="text-center">敏感词</th>
+                                <th class="text-center">替换词</th>
+                                <th class="text-center">敏感级别</th>
+                                <th class="text-center w170">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <volist name="senstive" id="val">
+                            <tr>
+                                <td class="text-center"><input type="checkbox" name="id[]" value="{$val.id}"></td>
+                                <td class="text-center">{$val.senstive_word}</td>
+                                <td class="text-center">{$val.replace_word}</td>
+                                <td class="text-center">{$val['level']?'<span class="text-danger">危险</span>':'<span class="text-navy">普通</span>'}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                         <a href="javascript:void(0)" link-url="{:U('senstive/edit',array('id' => $val['id']))}"><button class="btn btn-white btn-sm" type="button"><i class="fa fa-edit"></i> 修改</button></a>
+                                         <a href="javascript:void(0)" data-url="{:U('senstive/delete')}" data-id="{$val['id']}" data-action="App.del"><button class="btn btn-white btn-sm" type="button"><em class="fa fa-trash-o"></em> 删除</button></a>  
+                                    </div>
+                                </td>
+                            </tr>
+                            </volist>
+                        </tbody>
+                    </table>
+                    <div class="pull-right pagination m-t-no">
+                        {$page|str_replace='href','href="javascript:void(0)" link-url',###}
+                    </div>
+                </form>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>

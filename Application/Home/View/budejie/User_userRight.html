@@ -1,0 +1,12 @@
+        <dl class="other-user clearfix">
+        <dt>看看他们的笑话</dt>
+        <volist name="user_list" id="list">
+            <dd>
+                <a href="/user/{$list.id}" class="go-user-index" target="_blank">
+                    <img src="{$list.avatar}" alt="{$list.username}">
+                    <p>{$list.username}</p>
+                </a>
+                <a href="/user/{$list.id}" class="go-user-index-btn" target="_blank">去Ta首页</a>
+            </dd>
+        </volist>
+    </dl>

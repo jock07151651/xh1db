@@ -1,0 +1,25 @@
+
+
+<!-- 底部-开始 -->
+<div class="footer">
+	<div class="footer-content">
+		<div class="coypright">
+			<p>{$setting["site_copyright"]}　ICP备：{$setting["site_icp"]}　{$setting.site_tongji_code|htmlspecialchars_decode}</p>
+		</div>
+	</div>
+</div>
+<!-- 底部-结束 -->
+
+<!--回到顶部-开始-->
+<div class="return-top" id="j-return-top">
+	<div class="return-code">
+		<img class="qrcode" src="{$setting['site_qrcode']}">
+		<img class="arrow" src="/Public/index/mahua/images/reutrn-code-bg.png">
+	</div>
+	<div class="return-btn"></div>
+</div>
+<!--回到顶部-结束-->
+<script type="text/javascript">seajs.use(['user'], function(user) {$(window).load(function(){user.jokeList(test);});})</script>
+{$adv['pc_fumeiti']}{$adv['pc_duilian']}
+</body>
+</html>

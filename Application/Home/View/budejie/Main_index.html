@@ -1,0 +1,25 @@
+<include file="Public:header" />
+
+<!-- 主体内容-开始 -->
+<div id="content" class="main mb10 member">
+  <div class="content-block clearfix">
+	<include file="User:userBanner" />
+	<div class="col1" id="j-main-list">
+    	<ul class="user-nav">
+        	<li><a class="hover" href="/user/{$user_info.id}">投稿 {$user_info.send_num}</a></li>
+            <li><a href="/user/follows/{$user_info.id}">关注 {$user_info.follows}</a></li>
+            <li><a href="/user/fans/{$user_info.id}">粉丝 {$user_info.fans}</a></li>
+        </ul>
+		<include file="Public:joke" />
+	<div class="pagination">
+    {$page}
+    </div>
+    </div>
+    <div class="col2">
+	<include file="User:userRight" />
+	</div>
+</div>
+<div id="reward" class="joke-buy-box" style="display: none; top: 0; left: 0;"></div>
+</div>
+<!-- 主体内容-结束 -->
+<include file="Public:footer1" />

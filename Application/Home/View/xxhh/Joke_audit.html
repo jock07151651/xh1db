@@ -1,0 +1,164 @@
+<include file="Public:header" />
+<script type="text/javascript" src="http://7xl3wn.com2.z0.glb.qiniucdn.com/socket.io.min.js"></script>
+<script type="text/javascript" src="http://7xjfim.com2.z0.glb.qiniucdn.com/Iva.js"></script>
+<style type="text/css">
+	body{background: url(/Public/index/xxhh/images/audit_body_bg.png);}
+</style>
+<div id="audit">
+
+	<div class="main-audit ordinary-audit">
+		<div class="audit-user-info">
+			<div class="audit-user-img">
+				<a href="/user" target="_blank">
+					<img src="{$user.avatar}" alt="{$user.username}"><i></i>
+				</a>
+			</div>
+			<div class="audit-user-name">
+				<p class="title"><a href="/user" target="_blank">{$user.username}</a></p>
+				<p>总审稿：{$count}条</p>
+				<p>本周审稿：{$week_count}条</p>
+			</div>
+			<div class="audit-tips"></div>
+		</div>
+		<div class="audit-top"></div>
+		<div class="audit-content">
+			<div class="audit-left">
+				<if condition="$joke eq NULL">
+				<dl class="xiajiong">
+					<dt>
+						<h3 class="joke-title"></h3>
+					</dt>
+					<dd class="content">
+						<div class="joke-content">
+							<div style="font-size:18px; text-align:center; margin-top:100px">
+								你的效率太高，笑友们的速度远远跟不上，暂时没有投稿可以评审了！
+								<br>	<br>
+								你可以<a href="/">随便看看</a>或<a href="/joke/publish">投稿</a>
+	   						</div>
+						</div>
+					</dd>
+				</dl>
+				<else/>
+				<dl class="xiajiong">
+					<dt>
+						<h3 class="joke-title">{$joke.title}</h3>
+					</dt>
+					<dd class="content<?php if($joke['type'] == 3 || $joke['type'] == 2){echo ' content-pic'; }?>">
+						<div class="joke-content">
+							<?php
+							if($joke['type'] == 3) {
+								$content = htmlspecialchars_decode(stripcslashes($joke['content']));
+								$image = str_replace('m_','',$joke['image']);
+								$image = str_replace('/w5','',$image);
+								$content = str_replace('src="'.$image.'"','class="gifimg" gifimg="'.$image.'" alt="'.$joke['title'].'" src="'.$joke['image'].'"',$content);
+								echo $content;
+								echo '<span class="gif-play-btn">播放GIF</span>';
+
+							}else if($joke['type'] == 2){
+								$image = $joke['image'];
+                    $content = htmlspecialchars_decode(stripcslashes($joke['content']));
+                    $content = str_replace('src="'.$image.'"','alt="'.$joke['title'].'" src="'.$image.'"',$content);
+                    $pattern="/<img\s[^<>]*?src=[\'\"]([^\'\"<>]+?)[\'\"][^<>]*?>/i";
+                    preg_match_all($pattern,$content,$match);
+                    $count = count($match[0]);
+                    if($count > 1){
+                        echo '<div class="article-content">' . "\r\n";
+                        echo '  <div class="multiple-article-wrapper">' . "\r\n";
+                        echo '    <div class="multiple-article-zone clearfix">' . "\r\n";
+                        echo '      <div class="multiple-article-arrow prev"> <a href="javascript:;" class="deactive"> <i class="icon-left-open-big"></i> </a> </div>' . "\r\n";
+                        echo '      <div class="multiple-pics-wrapper">' . "\r\n";
+                        echo '        <div class="multiple-pics-zone">' . "\r\n";
+                        echo '          <ul class="multiple-pics-list">' . "\r\n";
+                        for($i=0;$i<$count;$i++){
+                          if($i == 0){
+                            echo '<li class="active">'.$match[0][$i].'</li>' . "\r\n";
+                          }else{
+                            echo '<li>'.$match[0][$i].'</li>' . "\r\n";
+                          }
+                        }
+                        echo '</ul>' . "\r\n";
+                        echo '        </div>' . "\r\n";
+                        echo '      </div>' . "\r\n";
+                        echo '      <div class="multiple-article-arrow next"> <a href="javascript:;"> <i class="icon-right-open-big"></i> </a> </div>' . "\r\n";
+                        echo '    </div>' . "\r\n";
+                        echo '    <div class="multiple-thumbnail-zone clearfix">' . "\r\n";
+                        echo '      <div class="multiple-thumbnail-arrow thumbprev"> <a href="javascript:;" class="deactive"> <i class="icon-left-open-big"></i> </a> </div>' . "\r\n";
+                        echo '      <div class="multiple-thumbnail-area">' . "\r\n";
+                        echo '        <ul class="multiple-thumbnail-list">' . "\r\n";
+                              // for($i=0;$i<$count;$i++){
+                              //     if($i == 0){
+                              //       echo '<li class="active"><a href="javascript:;">'.$match[0][$i].'</a></li>' . "\r\n";
+                              //     }else{
+                              //       echo '<li><a href="javascript:;">'.$match[0][$i].'</a></li>' . "\r\n";
+                              //     }
+                              //   }
+                        echo '</ul>' . "\r\n";
+                        echo '      </div>' . "\r\n";
+                        echo '      <div class="multiple-thumbnail-arrow thumbnext"> <a href="javascript:;"> <i class="icon-right-open-big"></i> </a> </div>' . "\r\n";
+                        echo '    </div>' . "\r\n";
+                        echo '  </div>' . "\r\n";
+                        echo '</div>' . "\r\n";
+				        	}else{
+				        		$content = htmlspecialchars_decode(stripcslashes($val['content']));
+                        $content = str_ireplace("<img " ,"<img alt=\"".$val['title']."\" ",$content);
+                        echo $content;
+				        	}
+							}else if($joke['type'] == 4){
+								preg_match('#sid/(.*?)/v\.swf#i',htmlspecialchars_decode($joke['content']),$matches);
+								echo '<div id="video" style="width:600px;height:340px; margin-left:auto; margin-right:auto"></div>';
+							}else{
+								if(strlen(htmlspecialchars_decode(stripcslashes($joke['content']))) > 400) {
+											echo mb_substr(strip_tags(htmlspecialchars_decode(stripcslashes($joke['content']))),0,400,'utf-8').'……';
+											echo '<br/>';
+											echo '<div><a href="/xiaohua/'.$joke['id'].'.html" style="text-decoration:underline;"> >>查看更多</a></div>';
+										}else {
+				              echo htmlspecialchars_decode(stripcslashes($joke['content']));
+										}
+							}
+						?>
+						</div>
+					</dd>
+				</dl>
+				</if>
+			</div>
+			<div class="audit-right">
+				<ul>
+					<li class="audit-good audit_btn" data-id="{$joke.id}" data-type="1" style="opacity: 1;"><a href="javascript:void(0)" style="cursor: pointer;">好笑</a></li>
+					<li class="audit-bad audit_btn" data-id="{$joke.id}" data-type="2" style="opacity: 1;"><a href="javascript:void(0)" style="cursor: pointer;">不好笑</a></li>
+					<li class="audit-report audit_btn" data-id="{$joke.id}" data-type="3" style="opacity: 1;"><a href="javascript:void(0)" style="cursor: pointer;">举报</a></li>
+					<li id="message" style="opacity: 1;"></li>
+					<li class="audit-skip  audit_btn" data-id="{$joke.id}" data-type="4" style="opacity: 1;"><a href="javascript:void(0)" style="cursor: pointer;">纠结 跳过</a></li>
+					<li class="audit-promote" style="opacity: 1;">
+						<span>
+							<a href="/about/shengao.html" target="_blank" style="cursor: pointer;">评审奖励</a>
+						</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="audit-bottom"></div>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+seajs.use(['app'],function(app) {
+	$('.audit_btn').click(function() {
+		var joke_id = $(this).data().id;
+		if(joke_id != '') {
+			var type = $(this).data().type;
+
+			$.post('/joke/audit',{joke_id:joke_id,type:type},function(data) {
+				if(data.err == 1) {
+					location.reload();
+				}
+			},'json');
+		}
+	});
+});
+</script>
+<if condition="$joke['type'] eq 4">
+<!--视频播放api--><script type="text/javascript">
+var ivaInstance = new Iva('video',{ appkey: '{$setting["site_appkey"]}',live: false, video: '{$joke.content}', title: '{$joke.title}', cover:'{$joke.image|default="/Public/images/fengmian.png"}',});</script>
+</if>
+<include file="Public:footer1" />

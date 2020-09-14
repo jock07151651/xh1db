@@ -1,0 +1,28 @@
+    <!--投稿-->
+	<div class="j-sent">
+		<a href="/joke/publish" class="left icon-contribute">
+			<i class="icon-page-contribute"></i>我要发笑话
+		</a>
+	</div>
+	<!--二维码-->
+	<div class="x-right_qr_code">
+		<div class="x-right_qr_code_c">
+			<i class="icon-r-qr">
+				<img src="{$setting['site_qrcode']}" alt="{$setting["site_name"]}二维码" title="扫二维码 用手机看{$setting["site_name"]}">
+			</i>
+	
+			<p class="icon-r-qr-des">扫二维码 用手机看{$setting["site_name"]}</p>
+		</div>
+	</div>
+    <div class="sidebar-tag clearfix">
+        <h3>他们刚刚兑换的礼品</h3>
+        <div class="gift-other-user">
+         <volist name="user_gift" id="ug_data">
+        <dd>
+            <a href="/user/{$ug_data.user_id}" class="avatar_60x60"><img src="{$ug_data.user_info.avatar}" alt="{$ug_data.user_info.username}"></a>
+            <p><a href="/user/{$ug_data.user_id}" class="gift-username">{$ug_data.user_info.username}</a></p>
+            <p>兑换了 <a href="/shop/detail_{$ug_data.gift_info.id}">{$ug_data.gift_info.title}</a></p> 
+        </dd>
+        </volist>
+        </div>
+    </div>

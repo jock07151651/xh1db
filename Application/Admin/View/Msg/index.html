@@ -1,0 +1,48 @@
+<div class="wrapper wrapper-content animated fadeInRight">    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox-title">
+                <h5>短信日志</h5>
+            </div>
+            <div class="ibox-content">
+                <form method="get" submit-url="{:U('msg/index')}" class="pull-right mail-search m-b-sm">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="keywords" placeholder="搜索短信日志">
+                        <div class="input-group-btn">
+                            <button class="btn btn-md btn-primary" type="button" data-form-action="App.search_form">搜索</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="clearfix"></div>
+                <form submit-url="{:U('msg/delete')}" method="post">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th class="text-center" width="30"><input type="checkbox"></th>
+                            <th class="text-center" width="170">手机号</th>
+                            <th>短信内容</th>
+                            <th class="text-center" width="60">状态</th>
+                            <th class="text-center" width="170">发送时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <volist name="msg" id="val">
+                        <tr>
+                            <td class="text-center"><input type="checkbox" name="id[]" value="{$val.id}"></td>
+                            <td class="text-center">{$val.phone}</td>
+                            <td>{$val.content}</td>
+                            <td class="text-center">{$val['status']?'<span class="text-navy">成功</span>':'<span class="text-danger">失败</span>'}</td>
+                            <td class="text-center">{$val.created_time|date='Y-m-d H:i:s',###}</td>
+                        </tr>
+                        </volist>
+                    </tbody>
+                </table>
+                <button class="btn btn-primary btn-sm" type="button" data-form-action="App.del_select"><i class="fa fa-trash-o"></i> 删除选中</button>
+                <div class="pull-right pagination m-t-no">
+                    {$page|str_replace='href','href="javascript:void(0)" link-url',###}
+                </div>
+                <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

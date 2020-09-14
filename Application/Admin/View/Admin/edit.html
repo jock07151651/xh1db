@@ -1,0 +1,57 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox-title">
+                <h5>编辑管理员</h5>
+            </div>
+            <div class="ibox-content">
+                <a  href="javascript:void(0)" link-url="{:U('admin/index')}"><button class="btn btn-primary btn-sm" type="button"><i class="fa fa-plus-circle"></i> 管理员管理</button></a>
+                <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                <form class="form-horizontal m-t-md" submit-url="{:U('admin/edit')}">
+                    <input type="hidden" name="id" value="{$admin.id}" />
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">用户名：</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="username" value="{$admin.username}" required data-msg-required="请输入用户名">
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">密码：</label>
+                        <div class="col-sm-2">
+                            <input type="password" class="form-control" name="password" >
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">用户权限：</label>
+                        <div class="col-sm-2">
+                            <select class="form-control" name="role_id">
+                                <volist name="role" id="val">
+                                <option value="{$val.id}" <if condition="$admin['role_id'] eq $val['id']">selected</if>>{$val.name}</option>
+                                </volist>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">状态：</label>
+                        <div class="col-sm-2">
+                            <select class="form-control" name="status">
+                                <option value="1" <if condition="$admin['status'] eq 1">selected</if>>正常</option>
+                                <option value="0" <if condition="$admin['status'] eq 0">selected</if>>冻结</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed m-t-sm m-b-sm"></div>
+                    <div class="form-group">
+                        <div class="col-sm-12 col-sm-offset-2">
+                            <button class="btn btn-primary" type="submit" data-form-action="App.submit_form"><i class="fa fa-check"></i> 保 存</button>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
